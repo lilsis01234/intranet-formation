@@ -26,7 +26,7 @@ function Login(props){
         //Configuration de axios pour resoudre les problème CROSS
         axios.defaults.withCredentials = true;
 
-        axios.post('http://localhost:8000/api/auth/login', formData)
+        axios.post(process.env.REACT_APP_API_BASE_URL+'/api/auth/login', formData)
         .then((response) => {
             const {token, role, id} = response.data;
            localStorage.setItem('jwt', token);
