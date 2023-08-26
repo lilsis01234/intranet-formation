@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom';
 import "./Login.css"
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 function Login(props){
     const navigate = useNavigate();
@@ -36,12 +38,14 @@ function Login(props){
             navigate('/home');
         })
         .catch((error) => {
-            console.error(error);
+            notify()
         })
     }
+    const notify = ()=> toast("Email ou mot de passe incorrect!")
 
     return(
         <div className="login">
+            <ToastContainer style={{ marginRight: "40%" }}/>
            <h1 className="login-title">Connexion</h1>
             <form onSubmit={handleSubmit} className="login-form">
                 <div>
