@@ -7,7 +7,7 @@ const ListeFormationAdmin = () => {
   const[recherche,setRecherche] = useState('');
   const[formationfiltre, setFormationsfiltre] = useState([]);
 
-  const id = localStorage.getItem('id');
+  // const id = localStorage.getItem('id');
   //Pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
   // Nombre d'éléments par page 
@@ -58,11 +58,11 @@ const ListeFormationAdmin = () => {
             <div className="search_form">
               <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
               <button className="search_Button"> Rechercher </button>
-              <Link to="#" className="AddCollab_Link">Organiser une formation</Link>
+              {/* <Link to="#" className="AddCollab_Link">Organiser une formation</Link> */}
             </div>
           </div>
           <div className="search_form">
-          <Link to={`/mesFormationsAdmin/${id}`} className="AddCollab_Link">Formations que j'ai organisées</Link>
+          {/* <Link to={`/mesFormationsAdmin/${id}`} className="AddCollab_Link">Formations que j'ai organisées</Link> */}
           <Link to = "#" className="AddCollab_Link">Formations auquelles j'ai assistées</Link>
           </div>
       </div>

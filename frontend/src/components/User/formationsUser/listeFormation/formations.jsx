@@ -70,7 +70,7 @@ const ListeFormationUser = () => {
                       {/* <Link to="#" className="AddCollab_Link">Organiser une formation</Link> */}
                     </div>
                   </div>
-                {/* <Link to={`/mesFormationsUser/${id}`} className="AddCollab_Link">Mes formations</Link> */}
+                <Link to="#" className="AddCollab_Link">Les formations auquelles j'ai assistées</Link>
               </div>
               {formations.length !== 0 ?(
               <>
