@@ -1,31 +1,65 @@
-// router.get('/all_demandes_formations', async(req,res) => {
-//     Formation.findAll({
-//         include: {
-//             model: Collaborateur,
-//             attributes: ['nom', 'prenom']
-//         },
-//         where: {
-//             approbation: 0 
-//         }
+const router = require('express').Router();
+const cookieParser = require('cookie-parser')
+router.use(cookieParser());
 
-//     })
-//     .then((formation) => {
-//         res.status(200).json(
-//             formation.map((formation) => {
-//                 return {
-//                     id : formation.id,
-//                     theme : formation.theme,
-//                     description : formation.description,
-//                     duree : formation.duree,
-//                     approbation : formation.approbation,
-//                     nomformateur: formation.Collaborateur.nom,
-//                     prenomformateur: formation.Collaborateur.prenom,
-//                 }
-//             })
-//         )
-//         console.log(formation)
-//     }) 
-// })
+const Formation = require('../../Modele/formation/Formation');
+const Collaborateur = require('../../Modele/Collaborateur');
+const Departement = require('../../Modele/Departement');
+const Seance = require('../../Modele/formation/Seance');
+const Module = require('../../Modele/formation/Module');
+const DemandeFormation = require('../../Modele/formation/demandeFormation')
+
+router.get('/all_demandes_formations', async (req, res) => {
+    DemandeFormation.findAll({
+      include: [
+        {
+          model: Collaborateur,
+          as: 'Auteur',
+          attributes: ['nom', 'prenom'],
+        },
+        {
+          model: Collaborateur,
+          as: 'Formateur',
+          attributes: ['nom', 'prenom'],
+        },
+        {
+          model: Collaborateur,
+          as: 'Collaborateur',
+          attributes: ['nom', 'prenom'],
+        },
+        {
+          model: Departement,
+          as: 'Departement',
+          attributes: ['nomDepartement'], // Supposons que vous voulez seulement le nom du département, ajustez-le en conséquence.
+        },
+      ],
+      attributes: ['id', 'themeDemande', 'description', 'auteur', 'collaborateurId', 'formateur', 'departementId'],
+      where: {
+        approbation1: 1,
+        approbation2: 0,
+      },
+    })
+      .then((demandeFormation) => {
+        res.status(200).json(
+          demandeFormation.map((formation) => {
+            return {
+              id: formation.id,
+              themeDemande: formation.themeDemande,
+              description: formation.description,
+              auteur: formation.Auteur ? `${formation.Auteur.nom} ${formation.Auteur.prenom}` : null,
+              formateur: formation.Formateur ? `${formation.Formateur.nom} ${formation.Formateur.prenom}` : null,
+              collaborateurId: formation.Collaborateur ? `${formation.Collaborateur.nom} ${formation.Collaborateur.prenom}` : null,
+              departement: formation.Departement ? formation.Departement.nomDepartement : null,
+            };
+          })
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ error: 'Erreur lors de la récupération des demandes de formation.' });
+      });
+  });
+
 // router.post('/approuver/:id', async (req, res) => {
 //     const formationId = req.params.id;
     
@@ -112,3 +146,5 @@
 //         console.error(err)
 //     }
 // })
+
+module.exports = router;
