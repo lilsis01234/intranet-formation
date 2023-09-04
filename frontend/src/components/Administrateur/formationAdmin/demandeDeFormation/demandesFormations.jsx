@@ -15,7 +15,6 @@ const DemandeFormation = () => {
   useEffect(() => {
     // const token = Cookies.get('jwt');
     const token = localStorage.getItem('jwt');
-    console.log(token);
     if (!token){
         navigate('/');
     }
@@ -26,14 +25,16 @@ const DemandeFormation = () => {
     }
     }, [navigate])
     
-   
+
 
 const Demandes = ()=>{
+  const idrole = localStorage.getItem('idrole');
+  console.log(idrole);
 
   const[demandeFormation,setDemandeFormation] = useState([]);
 
   const fetchCollaborateur = () => {
-    axios.get('http://localhost:8000/api/demande_formation/all_demandes_formations')
+    axios.get(`http://localhost:8000/api/demande_formation/all_demandes_formations/${idrole}`)
       .then(res => {setDemandeFormation(res.data)
       })
       .catch(err => console.log(err));
@@ -41,7 +42,7 @@ const Demandes = ()=>{
 
   useEffect(() => {
     fetchCollaborateur();
-  }, [])
+  }, [idrole])
   
 
   const handleApprove = (formationId) => {
