@@ -1,7 +1,8 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../../database/database');
 const Collaborateur = require('../Collaborateur');
-const Departement = require('../Departement')
+const Departement = require('../Departement');
+const Role = require('../Role');
 
 class DemandeFormation extends Model{}
 
@@ -42,7 +43,7 @@ DemandeFormation.init({
         type : DataTypes.INTEGER,
         allowNull : false,
         references : {
-        model : Collaborateur,
+        model : Role,
         key : 'id'
     }
     },
@@ -63,7 +64,7 @@ DemandeFormation.init({
         as: 'Auteur', // Alias défini ici
       });
       
-      DemandeFormation.belongsTo(Collaborateur, {
+      DemandeFormation.belongsTo(Role, {
         foreignKey: 'formateur',
         as: 'Formateur', // Alias défini ici
       });
