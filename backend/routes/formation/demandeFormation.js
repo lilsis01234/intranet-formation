@@ -7,7 +7,8 @@ const Collaborateur = require('../../Modele/Collaborateur');
 const Departement = require('../../Modele/Departement');
 const Seance = require('../../Modele/formation/Seance');
 const Module = require('../../Modele/formation/Module');
-const DemandeFormation = require('../../Modele/formation/demandeFormation')
+const DemandeFormation = require('../../Modele/formation/demandeFormation');
+const Role = require('../../Modele/Role');
 
 router.get('/all_demandes_formations', async (req, res) => {
     DemandeFormation.findAll({
@@ -18,9 +19,9 @@ router.get('/all_demandes_formations', async (req, res) => {
           attributes: ['nom', 'prenom'],
         },
         {
-          model: Collaborateur,
+          model: Role,
           as: 'Formateur',
-          attributes: ['nom', 'prenom'],
+          attributes: ['titreRole'],
         },
         {
           model: Collaborateur,
@@ -47,7 +48,7 @@ router.get('/all_demandes_formations', async (req, res) => {
               themeDemande: formation.themeDemande,
               description: formation.description,
               auteur: formation.Auteur ? `${formation.Auteur.nom} ${formation.Auteur.prenom}` : null,
-              formateur: formation.Formateur ? `${formation.Formateur.nom} ${formation.Formateur.prenom}` : null,
+              formateur: formation.Formateur ? `${formation.Formateur.titreRole}` : null,
               collaborateurId: formation.Collaborateur ? `${formation.Collaborateur.nom} ${formation.Collaborateur.prenom}` : null,
               departement: formation.Departement ? formation.Departement.nomDepartement : null,
             };
