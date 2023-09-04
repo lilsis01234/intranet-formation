@@ -46,7 +46,11 @@ DemandeFormation.init({
         key : 'id'
     }
     },
-    approbation:{
+    approbation1:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    approbation2:{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     }
