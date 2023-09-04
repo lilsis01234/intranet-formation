@@ -76,8 +76,6 @@ const ListeFormationAdmin = () => {
           <th className="w-60">Description</th>
           <th className="w-60">Organisateur(trice)</th>
           <th className="w-60">Voir plus</th>
-          <th className="w-60">Annuler l'approbation</th>
-
         </tr>
       </thead>
       <tbody>
