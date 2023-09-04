@@ -59,17 +59,24 @@ DemandeFormation.init({
         modelName : 'DemandeFormation'
     })
     DemandeFormation.belongsTo(Collaborateur, {
-        foreignKey : 'formateur',
-    })
-    DemandeFormation.belongsTo(Collaborateur, {
-        foreignKey : 'collaborateurId',
-    })
-    DemandeFormation.belongsTo(Collaborateur, {
-        foreignKey : 'auteur',
-    })
-    DemandeFormation.belongsTo(Departement,{
-        foreignKey : 'departementId',
-    })
+        foreignKey: 'auteur',
+        as: 'Auteur', // Alias défini ici
+      });
+      
+      DemandeFormation.belongsTo(Collaborateur, {
+        foreignKey: 'formateur',
+        as: 'Formateur', // Alias défini ici
+      });
+      
+      DemandeFormation.belongsTo(Collaborateur, {
+        foreignKey: 'collaborateurId',
+        as: 'Collaborateur', // Alias défini ici
+      });
+      
+      DemandeFormation.belongsTo(Departement, {
+        foreignKey: 'departementId',
+        as: 'Departement', // Alias défini ici
+      });
 
 
 module.exports = DemandeFormation;
