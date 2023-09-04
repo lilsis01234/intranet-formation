@@ -28,10 +28,13 @@ function Login(props){
 
         axios.post('http://localhost:8000/api/auth/login', formData)
         .then((response) => {
-            const {token, role, id} = response.data;
+            console.log(response.data)
+            const {token, role, id, idrole} = response.data;
            localStorage.setItem('jwt', token);
            localStorage.setItem('role', role);
-           localStorage.setItem('id', id)
+           localStorage.setItem('id', id);
+           localStorage.setItem('idrole', idrole);
+
             // Cookies.set('jwt', token)
             navigate('/home');
         })
@@ -39,7 +42,8 @@ function Login(props){
             console.error(error);
         })
     }
-
+    const idrole = localStorage.getItem('idrole');
+    console.log(idrole);
     return(
         <div className="login">
            <h1 className="login-title">Connexion</h1>
