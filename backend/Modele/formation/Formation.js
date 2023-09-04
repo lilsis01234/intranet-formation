@@ -17,10 +17,6 @@ Formation.init({
         type : DataTypes.STRING(8), 
         allowNull : false,
     },
-    approbation:{
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-    },
     formateur:{
         type : DataTypes.INTEGER,
         allowNull : false,
