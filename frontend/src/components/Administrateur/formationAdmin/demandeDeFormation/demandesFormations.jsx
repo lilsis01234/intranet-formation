@@ -33,7 +33,7 @@ const Demandes = ()=>{
   const[demandeFormation,setDemandeFormation] = useState([]);
 
   const fetchCollaborateur = () => {
-    axios.get('http://localhost:8000/api/formation/all_demandes_formations')
+    axios.get('http://localhost:8000/api/demande_formation/all_demandes_formations')
       .then(res => {setDemandeFormation(res.data)
       })
       .catch(err => console.log(err));
@@ -45,7 +45,7 @@ const Demandes = ()=>{
   
 
   const handleApprove = (formationId) => {
-    axios.post(`http://localhost:8000/api/formation/approuver/${formationId}`)
+    axios.post(`http://localhost:8000/api/demandeformation/approuver/${formationId}`)
         .then(response => {
             console.log(response.data); // Message de succès ou d'erreur
             // Effectuer des actions supplémentaires si nécessaire
@@ -58,7 +58,7 @@ const Demandes = ()=>{
   };
 
   const handleDesapprove = (formationId) => {
-    axios.delete(`http://localhost:8000/api/formation/desapprouver/${formationId}`)
+    axios.delete(`http://localhost:8000/api/demandeformation/desapprouver/${formationId}`)
         .then(response => {
             console.log(response.data); // Message de succès ou d'erreur
             // Effectuer des actions supplémentaires si nécessaire
