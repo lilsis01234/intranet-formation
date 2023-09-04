@@ -33,7 +33,7 @@ const Demandes = ()=>{
 
   const[demandeFormation,setDemandeFormation] = useState([]);
 
-  const fetchCollaborateur = () => {
+  const fetchDemandeFormation = () => {
     axios.get(`http://localhost:8000/api/demande_formation/all_demandes_formations/${idrole}`)
       .then(res => {setDemandeFormation(res.data)
       })
@@ -41,7 +41,7 @@ const Demandes = ()=>{
   }
 
   useEffect(() => {
-    fetchCollaborateur();
+    fetchDemandeFormation();
   }, [idrole])
   
 
@@ -50,7 +50,7 @@ const Demandes = ()=>{
         .then(response => {
             console.log(response.data); // Message de succès ou d'erreur
             // Effectuer des actions supplémentaires si nécessaire
-            fetchCollaborateur();
+            fetchDemandeFormation();
             console.log(demandeFormation)
         })
         .catch(error => {
@@ -63,7 +63,7 @@ const Demandes = ()=>{
         .then(response => {
             console.log(response.data); // Message de succès ou d'erreur
             // Effectuer des actions supplémentaires si nécessaire
-            fetchCollaborateur();
+            fetchDemandeFormation();
             console.log(demandeFormation)
         })
         .catch(error => {
