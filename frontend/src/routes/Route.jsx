@@ -22,8 +22,8 @@ import ListDepartementUser from '../components/User/Departement/ListeDepartement
 import CollabDepartement from '../components/User/Departement/CollabParDepartement/CollabDepartement'
 import VoirPlusFormation from '../components/Administrateur/formationAdmin/VoirPlus/VoirPlusFormation'
 import VoirPlusFormationUser from '../components/User/formationsUser/voirPlusFormationUser/VoirPlusFormationUser'
-import MesFormationsUser from '../components/User/formationsUser/mesFormations/MesFormationsUser'
-import MesFormationsAdmin from '../components/Administrateur/formationAdmin/mesFormations/MesFormations'
+
+
 
 function AppRoute(){
     return (
@@ -54,8 +54,6 @@ function AppRoute(){
                 <Route path="/enterprise/organigramme" element={<Organigramme/>}/>
                 <Route path="/admin/formation/:id" element={<VoirPlusFormation/>} />
                 <Route path="/user/formation/:id" element={<VoirPlusFormationUser/>} />
-                <Route path="/mesFormationsUser/:id" element={<MesFormationsUser/>} />
-                <Route path="/mesFormationsAdmin/:id" element={<MesFormationsAdmin/>} />
 
 
 
