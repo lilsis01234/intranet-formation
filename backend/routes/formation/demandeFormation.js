@@ -7,7 +7,8 @@ const Departement = require('../../Modele/Departement');
 const DemandeFormation = require('../../Modele/formation/demandeFormation');
 const Role = require('../../Modele/Role');
 
-router.get('/all_demandes_formations', async (req, res) => {
+router.get('/all_demandes_formations/:idRole', async (req, res) => {
+    const Roleid = req.params.idRole;
     DemandeFormation.findAll({
       include: [
         {
@@ -35,6 +36,7 @@ router.get('/all_demandes_formations', async (req, res) => {
       where: {
         approbation1: 1,
         approbation2: 0,
+        formateur:Roleid,
       },
     })
       .then((demandeFormation) => {
