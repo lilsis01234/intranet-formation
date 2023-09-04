@@ -2,11 +2,8 @@ const router = require('express').Router();
 const cookieParser = require('cookie-parser')
 router.use(cookieParser());
 
-const Formation = require('../../Modele/formation/Formation');
 const Collaborateur = require('../../Modele/Collaborateur');
 const Departement = require('../../Modele/Departement');
-const Seance = require('../../Modele/formation/Seance');
-const Module = require('../../Modele/formation/Module');
 const DemandeFormation = require('../../Modele/formation/demandeFormation');
 const Role = require('../../Modele/Role');
 
