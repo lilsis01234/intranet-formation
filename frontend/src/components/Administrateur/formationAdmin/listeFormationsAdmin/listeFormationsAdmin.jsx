@@ -25,17 +25,17 @@ const ListeFormationAdmin = () => {
   }, [])
   console.log(formations)
 
-  const handleCancel= (formationId) => {
-    axios.post(`http://localhost:8000/api/formation/annulerapprobation/${formationId}`)
-        .then(response => {
-            console.log(response.data); // Message de succès ou d'erreur
-            // Effectuer des actions supplémentaires si nécessaire
-            fetchCollaborateur();
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-  };
+  // const handleCancel= (formationId) => {
+  //   axios.post(`http://localhost:8000/api/formation/annulerapprobation/${formationId}`)
+  //       .then(response => {
+  //           console.log(response.data); // Message de succès ou d'erreur
+  //           // Effectuer des actions supplémentaires si nécessaire
+  //           fetchCollaborateur();
+  //       })
+  //       .catch(error => {
+  //           console.error("Error:", error);
+  //       });
+  // };
   
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -89,10 +89,9 @@ const ListeFormationAdmin = () => {
             <td className="w-60">
               <button className="table_item_icon"><Link to= {`/admin/formation/${formation.id}`}>Voir plus</Link></button>
             </td>
-            <td className="w-60">
-                {/* lien '/collaborateur/id_departement' */}
+            {/* <td className="w-60">
                 <button className="table_item_icon" onClick={() => handleCancel(formation.id)}>Annuler l'approbation</button>
-              </td>
+              </td> */}
             </tr>
         ))) : (
         formationfiltre.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase()) || formations.description.toLowerCase().includes(recherche.toLowerCase())).map((formation) => (
@@ -103,10 +102,9 @@ const ListeFormationAdmin = () => {
               <td className="w-60">
                 <button className="table_item_icon"><Link to= {`/admin/formation/${formation.id}`}>Voir plus</Link></button>
               </td>
-              <td className="w-60">
-                {/* lien '/collaborateur/id_departement' */}
+              {/* <td className="w-60">
                 <button className="table_item_icon" onClick={() => handleCancel(formation.id)}>Annuler l'approbation</button>
-              </td>
+              </td> */}
             </tr>
         ))
         )}
