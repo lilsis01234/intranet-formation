@@ -1,6 +1,7 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../../database/database');
 const Collaborateur = require('../Collaborateur');
+const Departement = require('../Departement');
 
 class Formation extends Model{}
 
@@ -24,7 +25,24 @@ Formation.init({
         model : Collaborateur,
         key : 'id'
     }
-    }},{
+    },
+    departementAFormer:{
+        type : DataTypes.INTEGER,
+        allowNull : true,
+        references : {
+        model : Departement,
+        key : 'id'
+    }
+    },
+    personneAFormer:{
+        type : DataTypes.INTEGER,
+        allowNull : true,
+        references : {
+        model : Collaborateur,
+        key : 'id'
+    }
+    }
+    },{
         sequelize,
         modelName : 'Formation'
     })
@@ -32,6 +50,15 @@ Formation.init({
         foreignKey : 'formateur',
         onDelete : 'CASCADE'
     })
+    Formation.belongsTo(Collaborateur, {
+        foreignKey: 'personneAFormer',
+        as: 'CollaborateurFormation', // Alias défini ici
+      });
+      
+    Formation.belongsTo(Departement, {
+    foreignKey: 'departementAFormer',
+    as: 'DepartementFormation', // Alias défini ici
+    });
 
 
 module.exports = Formation;
