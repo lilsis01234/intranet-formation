@@ -20,6 +20,7 @@ const formations = require('./routes/formation/formation');
 const demandesformations = require('./routes/formation/demandeFormation');
 const modules = require('./routes/formation/module')
 const seances = require('./routes/formation/seance')
+const discussionFormation = require('./routes/formation/discussion')
 
 //importation des configurations$
 const dotenv = require('dotenv');
@@ -61,6 +62,8 @@ app.use('/api/formation',formations);
 app.use('/api/demande_formation', demandesformations);
 app.use('/api/module',modules);
 app.use('/api/seance',seances);
+app.use('/api/discussion',discussionFormation);
+
 
 
 //Connection à la base de donnée MySQL
