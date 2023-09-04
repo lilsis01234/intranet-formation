@@ -44,6 +44,10 @@ Seance.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    approbation:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+  },
   },
   {
     sequelize,
