@@ -19,7 +19,7 @@ const association = require('../Modele/formation/associationSeanceCollab');
 //Synchronisation de la base de donnée 
 async function syncDatabase(){
     try{
-        await sequelize.sync({force : true}); 
+        await sequelize.sync({force : false}); 
         const { Seance, Collaborateur, ParticipantsSeance } = association;
 
         Collaborateur.belongsToMany(Seance, { through: ParticipantsSeance });
