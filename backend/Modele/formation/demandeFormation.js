@@ -1,10 +1,11 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../../database/database');
 const Collaborateur = require('../Collaborateur');
+const Departement = require('../Departement')
 
 class DemandeFormation extends Model{}
 
-Formation.init({
+DemandeFormation.init({
     themeDemande:{
         type : DataTypes.STRING(50), 
         allowNull : false, 
@@ -13,13 +14,21 @@ Formation.init({
         type : DataTypes.STRING(500), 
         allowNull : false, 
     },
-    demandeur:{
-        type : DataTypes.INTEGER,
-        allowNull : false,
-        references : {
-        model : Collaborateur,
-        key : 'id'
-    }
+    collaborateurId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: Collaborateur,
+          key: 'id',
+        },
+    },
+    departementId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: Departement,
+          key: 'id',
+        },
     },
     auteur:{
         type : DataTypes.INTEGER,
@@ -43,12 +52,20 @@ Formation.init({
     }
     },{
         sequelize,
-        modelName : 'Formation'
+        modelName : 'DemandeFormation'
     })
-    Formation.belongsTo(Collaborateur, {
+    DemandeFormation.belongsTo(Collaborateur, {
         foreignKey : 'formateur',
-        onDelete : 'CASCADE'
+    })
+    DemandeFormation.belongsTo(Collaborateur, {
+        foreignKey : 'collaborateurId',
+    })
+    DemandeFormation.belongsTo(Collaborateur, {
+        foreignKey : 'auteur',
+    })
+    DemandeFormation.belongsTo(Departement,{
+        foreignKey : 'departementId',
     })
 
 
-module.exports = Formation;
+module.exports = DemandeFormation;
