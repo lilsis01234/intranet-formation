@@ -12,6 +12,7 @@ const DiscussionFormation= require('../Modele/formation/discussionFormation');
 const Module = require('../Modele/formation/Module');
 const Seance = require('../Modele/formation/Seance');
 const ParticipantsSeance = require('../Modele/formation/ParticipantsSeance');
+const DemandeFormation = require('../Modele/formation/demandeFormation');
 
 const association = require('../Modele/formation/associationSeanceCollab');
 
