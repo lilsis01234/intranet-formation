@@ -48,16 +48,16 @@ Formation.init({
     })
     Formation.belongsTo(Collaborateur, {
         foreignKey : 'formateur',
+        as: 'CollaborateurFormateur',
         onDelete : 'CASCADE'
     })
     Formation.belongsTo(Collaborateur, {
         foreignKey: 'personneAFormer',
-        as: 'CollaborateurFormation', // Alias défini ici
-      });
-      
+        as: 'CollaborateurFormation', 
+      });     
     Formation.belongsTo(Departement, {
-    foreignKey: 'departementAFormer',
-    as: 'DepartementFormation', // Alias défini ici
+        foreignKey: 'departementAFormer',
+        as: 'DepartementFormation', // Alias défini ici
     });
 
 
