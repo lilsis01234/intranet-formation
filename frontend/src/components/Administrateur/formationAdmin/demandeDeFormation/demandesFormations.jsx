@@ -26,7 +26,6 @@ const DemandeFormation = () => {
     }, [navigate])
     
 
-
 const Demandes = ()=>{
   const idrole = localStorage.getItem('idrole');
   console.log(idrole);
@@ -43,10 +42,9 @@ const Demandes = ()=>{
   useEffect(() => {
     fetchDemandeFormation();
   }, [idrole])
-  
 
   const handleApprove = (formationId) => {
-    axios.post(`http://localhost:8000/api/demandeformation/approuver/${formationId}`)
+    axios.post(`http://localhost:8000/api/demande_formation/approuver/${formationId}`)
         .then(response => {
             console.log(response.data); // Message de succès ou d'erreur
             // Effectuer des actions supplémentaires si nécessaire
@@ -59,7 +57,7 @@ const Demandes = ()=>{
   };
 
   const handleDesapprove = (formationId) => {
-    axios.delete(`http://localhost:8000/api/demandeformation/desapprouver/${formationId}`)
+    axios.delete(`http://localhost:8000/api/demande_formation/desapprouver/${formationId}`)
         .then(response => {
             console.log(response.data); // Message de succès ou d'erreur
             // Effectuer des actions supplémentaires si nécessaire
