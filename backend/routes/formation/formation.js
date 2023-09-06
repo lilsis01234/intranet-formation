@@ -6,33 +6,101 @@ const Formation = require('../../Modele/formation/Formation');
 const Collaborateur = require('../../Modele/Collaborateur');
 const Seance = require('../../Modele/formation/Seance');
 const Module = require('../../Modele/formation/Module');
+const Role2 = require('../../Modele/Role2');
+const Departement = require('../../Modele/Departement')
 
-
+//Toutes les formations dont tout le mmonde peut assister
 router.get('/all_formations', async(req,res) => {
     Formation.findAll({
-        include: {
-            model: Collaborateur,
-            attributes: ['nom', 'prenom']
+        include: [
+            {
+              model: Collaborateur,
+              as: 'Auteur',
+              attributes: ['nom', 'prenom'],
+            },
+            // {
+            //   model: Role2,
+            //   as: 'Roledestinataire',
+            //   attributes: ['titreRole'],
+            // },
+            {
+              model: Collaborateur,
+              as: 'Collaborateur',
+              attributes: ['nom', 'prenom'],
+            },
+            {
+              model: Collaborateur,
+              as: 'Formateur',
+              attributes: ['nom', 'prenom'],
+            },
+            {
+              model: Departement,
+              as: 'Departement',
+              attributes: ['nomDepartement'], // Supposons que vous voulez seulement le nom du département, ajustez-le en conséquence.
+            },
+          ],
+          attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer'],
+        where:
+        {
+            approbation1: 1,
+            departementAFormer:null,
+            personneAFormer:null,
+            destinataireDemande:null
         },
     })
     .then((formation) => {
-        res.status(200).json(
-            formation.map((formation) => {
-                return {
-                    id : formation.id,
-                    theme : formation.theme,
-                    description : formation.description,
-                    duree : formation.duree,
-                    approbation : formation.approbation,
-                    nomformateur: formation.Collaborateur.nom,
-                    prenomformateur: formation.Collaborateur.prenom,
-                }
-            })
-        )
+        res.status(200).json(formation)
         console.log(formation)
     }) 
 })
 
+//Les formations dont une personne doit assister à cause d'une demande 
+router.get('/all_formations/:idPersonne', async(req,res) => {
+    const idPersonne = req.params.idPersonne
+    Formation.findAll({
+        include: [
+            {
+              model: Collaborateur,
+              as: 'Auteur',
+              attributes: ['nom', 'prenom'],
+            },
+            {
+              model: Role2,
+              as: 'Roledestinataire',
+              attributes: ['titreRole'],
+            },
+            {
+              model: Collaborateur,
+              as: 'Collaborateur',
+              attributes: ['nom', 'prenom'],
+            },
+            {
+              model: Collaborateur,
+              as: 'Formateur',
+              attributes: ['nom', 'prenom'],
+            },
+            {
+              model: Departement,
+              as: 'Departement',
+              attributes: ['nomDepartement'], // Supposons que vous voulez seulement le nom du département, ajustez-le en conséquence.
+            },
+          ],
+          attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer','destinataireDemande'],
+        where:
+        {
+            approbation1: 1,
+            departementAFormer:null,
+            personneAFormer:idPersonne,
+            destinataireDemande:!null
+        },
+    })
+    .then((formation) => {
+        res.status(200).json(formation)
+        console.log(formation)
+    }) 
+})
+
+//Les modules et séances d'une formation
 router.get('/all_informations/:idformation', async(req,res)=>{
     const formationId = req.params.idformation;
         try {
@@ -58,6 +126,7 @@ router.get('/all_informations/:idformation', async(req,res)=>{
         }
     });
 
+//Les formations organisées par une personne
 router.get('/formations/:idPersonne',async(req,res)=>{
     const idPersonne = req.params.idPersonne;
     Formation.findAll({
@@ -81,6 +150,7 @@ router.get('/formations/:idPersonne',async(req,res)=>{
     }) 
 })
 
+//Ajout de formation par un formateur sans besoin d'approbation
 router.post('/addFormation',async(req,res)=>{
     try{
         const newFormation = await(Formation.create({
