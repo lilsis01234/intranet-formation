@@ -1,6 +1,6 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../database/database');
-const CompteCollab = require('./CompteCollab');
+// const CompteCollab = require('./CompteCollab');
 
 
 

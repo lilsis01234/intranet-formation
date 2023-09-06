@@ -12,17 +12,18 @@ const DiscussionFormation= require('../Modele/formation/discussionFormation');
 const Module = require('../Modele/formation/Module');
 const Seance = require('../Modele/formation/Seance');
 const ParticipantsSeance = require('../Modele/formation/ParticipantsSeance');
-const DemandeFormation = require('../Modele/formation/demandeFormation');
-
+// const DemandeFormation = require('../Modele/formation/demandeFormation');
+const Role2 = require('../Modele/Role2');
 const association = require('../Modele/formation/associationSeanceCollab');
 
 //Synchronisation de la base de donnée 
 async function syncDatabase(){
     try{
         await sequelize.sync({force : true}); 
-        const { Seance, Collaborateur, ParticipantsSeance } = association;
+        const { Seance, Collaborateur, ParticipantsSeance,Departement } = association;
 
         Collaborateur.belongsToMany(Seance, { through: ParticipantsSeance });
+        Departement.belongsToMany(Seance,{ through: ParticipantsSeance })
         Seance.belongsToMany(Collaborateur, { through: ParticipantsSeance });
         console.log('La base de donnée est synchronisée avec succès')
     }  catch (error){
