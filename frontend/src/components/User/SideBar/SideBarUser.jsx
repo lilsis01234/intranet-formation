@@ -13,6 +13,7 @@ const SideBarUser = () => {
     const toogleSideBar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     }
+    // const role = localStorage.getItem('role');
   return (
     <div className="sideBar_container">
         {isSidebarOpen && (
@@ -25,6 +26,7 @@ const SideBarUser = () => {
                     <li className="sideBar_menu_item " ><Link className="flex flex-row items-center"><MdPoll className="mr-2"/>Sondage</Link></li>
                     <li className="sideBar_menu_item " ><Link to='/collaborateur/list' className="flex flex-row items-center"><AiOutlineTeam className="mr-2"/>Nos collaborateurs</Link></li>
                     <li className="sideBar_menu_item " ><Link to='/enterprise/organigramme' className="flex flex-row items-center"><MdBusiness className="mr-2"/>Notre entreprise</Link></li>
+                    {/* conditions sur les rôles et les liens qui doivent s'afficher en f° */}
                     <li className="sideBar_menu_item " ><Link to='/user/formations' className="flex flex-row items-center"><MdBusiness className="mr-2"/>Les formations</Link></li>
                     <li className="sideBar_menu_item " ><Link to='/user/departements' className="flex flex-row items-center"><MdBusiness className="mr-2"/>Les départements</Link></li>
                 </ul>

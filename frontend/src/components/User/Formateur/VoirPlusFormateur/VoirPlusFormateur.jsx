@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const MesFormationsFormateur = () => {
+const VoirPlusFormateur = () => {
     const navigate = useNavigate();
     useEffect(() => {
         // const token = Cookies.get('jwt');
@@ -32,4 +32,4 @@ const MesFormationsFormateur = () => {
   )
 }
 
-export default MesFormationsFormateur
+export default VoirPlusFormateur
