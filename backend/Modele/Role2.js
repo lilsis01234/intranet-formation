@@ -2,13 +2,13 @@ const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../database/database');
 // const CompteCollab = require('./CompteCollab');
 const Role= require ('../Modele/Role');
-
+// const CompteCollab = require('../Modele/CompteCollab');
 
 class Role2 extends Model{}
 
 Role2.init({
     role:{
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
         allowNull : false,
         references : {
             model : Role,
@@ -25,6 +25,7 @@ Role2.init({
     sequelize,
     modelName : 'Role2',
 });
+
 
 Role2.belongsTo(Role, {
     foreignKey : 'role',
