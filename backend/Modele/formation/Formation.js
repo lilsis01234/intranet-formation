@@ -91,8 +91,7 @@ Formation.init({
         as: 'Departement', // Alias défini ici
     });
     Formation.belongsTo(Role2, {
-        foreignKey: 'destinataireDemande',
-        as: 'Roledestinataire', // Alias défini ici
+        foreignKey: 'destinataireDemande', // Alias défini ici
     });
 
 // atao ato ny @ demande de Formation, asina destinataire atao nullable dia formateur ilay olona mapiditra azy ato, soloina daholo ny route
