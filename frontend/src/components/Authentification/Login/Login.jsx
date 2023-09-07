@@ -29,9 +29,9 @@ function Login(props){
         axios.post('http://localhost:8000/api/auth/login', formData)
         .then((response) => {
             console.log(response.data)
-            const {token, role, id, idrole} = response.data;
+            const {token, role2, id, idrole} = response.data;
            localStorage.setItem('jwt', token);
-           localStorage.setItem('role', role);
+           localStorage.setItem('role2', role2);
            localStorage.setItem('id', id);
            localStorage.setItem('idrole', idrole);
 
