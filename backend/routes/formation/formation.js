@@ -45,7 +45,7 @@ router.get('/all_formations', async(req,res) => {
             approbation1: 1,
             departementAFormer:null,
             personneAFormer:null,
-            destinataireDemande:null
+            // destinataireDemande:null
         },
     })
     .then((formation) => {
@@ -91,7 +91,7 @@ router.get('/all_formations/:idPersonne', async(req,res) => {
             approbation1: 1,
             departementAFormer:null,
             personneAFormer:idPersonne,
-            destinataireDemande:!null
+            // destinataireDemande:!null
         },
     })
     .then((formation) => {
