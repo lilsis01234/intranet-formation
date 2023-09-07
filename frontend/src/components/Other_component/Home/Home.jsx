@@ -10,12 +10,17 @@ const Home = () => {
             navigate('/');
         }
         const role = localStorage.getItem('role');
+
+
         if (role === 'Administrateur'){
             navigate('/admin/home');
             console.log('Redirection vers le page administrateur');
-        } else {
+        } if (role === 'User'){
             navigate('/user/profile'); //A changer quand une nouvelle module soit installer
             console.log('Redirection vers le page user');
+        }
+        else{
+            navigate('/invite')
         }
     }, [navigate]);
   return (
