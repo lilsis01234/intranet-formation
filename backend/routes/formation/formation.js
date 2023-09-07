@@ -2,6 +2,7 @@ const router = require('express').Router();
 const cookieParser = require('cookie-parser')
 router.use(cookieParser());
 
+
 const Formation = require('../../Modele/formation/Formation');
 const Collaborateur = require('../../Modele/Collaborateur');
 const Seance = require('../../Modele/formation/Seance');
@@ -40,13 +41,15 @@ router.get('/all_formations', async(req,res) => {
             },
           ],
           attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer'],
-        where:
-        {
-            approbation1: 1,
-            departementAFormer:null,
-            personneAFormer:null,
-            // destinataireDemande:null
-        },
+            where:
+            {
+                [Op.or]: [
+                    { approbation1: 1 }, // Formation sans approbation nécessaire
+                    { destinataireDemande: null }, // Formation sans destinataire spécifique
+                    {departementAFormer:null},
+                    {personneAFormer:null},
+                ],
+            },
     })
     .then((formation) => {
         res.status(200).json(formation)
@@ -91,7 +94,9 @@ router.get('/all_formations/:idPersonne', async(req,res) => {
             approbation1: 1,
             departementAFormer:null,
             personneAFormer:idPersonne,
-            // destinataireDemande:!null
+            destinataireDemande: {
+                [Sequelize.Op.not]: null,
+            },
         },
     })
     .then((formation) => {
@@ -158,7 +163,8 @@ router.post('/addFormation',async(req,res)=>{
             description:req.body.description,
             duree:req.body.duree,
             formateur:req.body.formateur,
-            approbation:0
+            auteur:req.body.auteur,
+            approbation1:1
         }))
         const demandeFormation = await newFormation.save();
         res.status(201).json(demandeFormation);
