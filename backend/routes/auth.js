@@ -3,24 +3,17 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 
-
-
 require('dotenv').config();
-
 
 const crypto = require('crypto');
 const Role = require('../Modele/Role');
 const Role2 = require('../Modele/Role2');
-
-
 
 const router = require('express').Router();
 
 router.use(cookieParser());
 
 const secretKey = crypto.randomBytes(32).toString('hex');
-
-
 
 //pour se connecter
 router.post('/login', (req, res, next) => {
@@ -48,7 +41,7 @@ router.post('/login', (req, res, next) => {
                 }
 
                 const userRole2 = comptes.Role2; // Obtenir Role2
-                const userRole = userRole2 ? userRole2.role : null; // Obtenir Role depuis Role2
+                const userRole = userRole2.Role ; // Obtenir Role depuis Role2
 
                 if (!userRole) {
                     return res.status(401).json({ message: 'Rôles non définis pour l\'utilisateur ' });
@@ -70,7 +63,7 @@ router.post('/login', (req, res, next) => {
                     role: roleTitle,
                     role2: roleTitle2,
                     token: token,
-                    idrole: userRole.id
+                    // idrole: userRole.id
                 })
 
                 console.log('Utilisateur connecté avec succès')
