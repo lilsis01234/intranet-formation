@@ -3,10 +3,8 @@ const CompteCollab = require('../Modele/CompteCollab');
 const Departement = require('../Modele/Departement');
 const Poste = require('../Modele/Poste');
 
-
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-
 
 //Liste de tous les collaborateurs avec son email
 router.get('/liste_collaborateur', (req, res) => {
@@ -50,9 +48,6 @@ router.get('/liste_collaborateur', (req, res) => {
         })
 })
 
-
-
-
 //Modifer le mot de passe d'un compte collaborateur 
 router.put('/edit/:id', async (req, res) => {
     const { id } = req.params;
@@ -66,7 +61,6 @@ router.put('/edit/:id', async (req, res) => {
         const updatedCompte = await updateCompte.update({
             password: hashedPassword
         })
-
         return res.status(201).json(updatedCompte);
     }
     catch (err) {
@@ -91,6 +85,5 @@ router.delete('/delete/:id', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de la suprresion du compte' })
     }
 })
-
 
 module.exports = router;
