@@ -18,7 +18,7 @@ function HomeAdmin(){
         }
 
         const role = localStorage.getItem('role'); 
-        if (!(role === "Administrateur")){
+        if (!(role.toLowerCase === 'administrateur')){
             navigate('/home');
         }
 
