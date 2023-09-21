@@ -9,7 +9,6 @@ class Formation extends Model{}
 Formation.init({
     theme:{
         type : DataTypes.STRING(50), 
-        allowNull : false, 
     },
     description:{
         type : DataTypes.STRING(500), 
@@ -63,11 +62,6 @@ Formation.init({
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     }
-    // },
-    // approbation2:{
-    //     type: DataTypes.BOOLEAN,
-    //     defaultValue: false,
-    // }
     },{
         sequelize,
         modelName : 'Formation'
@@ -94,5 +88,5 @@ Formation.init({
         foreignKey: 'destinataireDemande', // Alias défini ici
     });
 
-// atao ato ny @ demande de Formation, asina destinataire atao nullable dia formateur ilay olona mapiditra azy ato, soloina daholo ny route
-module.exports = Formation;
+    module.exports = Formation;
+// // // module.exports = Formation;

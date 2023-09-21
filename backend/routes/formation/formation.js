@@ -121,7 +121,7 @@ router.get('/all_informations/:idformation', async(req,res)=>{
                 }
             })
             const formation = await Formation.findByPk(formationId)
-            if (!formation || !modules || !seances) {
+            if (!formation) {
                 return res.status(404).json({ error: 'Formation introuvable' });
             }
             res.status(200).json({formation,modules,seances});

@@ -26,4 +26,26 @@ router.get('/all_comments/:idDiscussion', async(req,res)=>{
         }
     });
 
+    router.delete('/deletecomment/:id',async(req,res)=>{
+        const idCommentaire = req.params.id
+        try {
+            const commentaire = await Commentaire.findByPk(idCommentaire);
+            if (!commentaire) {
+                return res.status(404).json({ error: 'commentaire introuvable' });
+            }
+            
+            // Supprimer la formation elle-même
+            const supp = await commentaire.destroy();
+            if(supp){
+                res.status(200).send('bien supprimé');
+            }
+            
+        } catch (error) {
+            console.error('Erreur lors de la suppression :', error);
+            res.status(500).json({ message: 'Erreur lors de la suppression' });
+        }
+    });
+
+    
+
 module.exports = router;

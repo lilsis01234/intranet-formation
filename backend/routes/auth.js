@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 
-require('dotenv').config();
+// require('dotenv').config();
 
 const crypto = require('crypto');
 const Role = require('../Modele/Role');
@@ -20,13 +20,14 @@ router.post('/login', (req, res, next) => {
     CompteCollab.findOne({
         where: { email: req.body.email },
         include: [{ model: Role2,
+            attributes:['id','titreRole2'],
             include: [
                 {
-                    model: Role, // Inclure la table Role à l'intérieur de Role2
-                    attributes: ['id','titreRole'] // Sélectionner les attributs de Role que vous souhaitez
+                    model: Role, 
+                    attributes: ['id','titreRole'] 
                 }
             ]
-            }] // Effectuer une jointure pour obtenir Role2 et Role
+            }] 
     })
     .then(comptes => {
         if (!comptes) {
@@ -40,8 +41,8 @@ router.post('/login', (req, res, next) => {
                     return res.status(401).json({ message: 'Mot de passe incorrect' })
                 }
 
-                const userRole2 = comptes.Role2; // Obtenir Role2
-                const userRole = userRole2.Role ; // Obtenir Role depuis Role2
+                const userRole2 = comptes.Role2; 
+                const userRole = userRole2.Role ;
 
                 if (!userRole) {
                     return res.status(401).json({ message: 'Rôles non définis pour l\'utilisateur ' });

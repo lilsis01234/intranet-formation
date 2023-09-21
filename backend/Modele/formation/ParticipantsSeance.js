@@ -13,10 +13,6 @@ const ParticipantsSeance = sequelize.define('ParticipantsSeance', {
       type:DataTypes.BOOLEAN,
       defaultValue: false,
     }
-    // participant: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false, // Selon votre structure
-    // },
 }, {
   timestamps : false  
 })

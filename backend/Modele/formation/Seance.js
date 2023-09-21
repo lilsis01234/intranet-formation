@@ -1,7 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../../database/database');
-// const Formation = require('./Formation'); // Assurez-vous d'importer Formation
-const Module = require('./Module'); // Assurez-vous d'importer Module
+const Module = require('./Module'); 
 const Collaborateur = require('../Collaborateur');
 const ParticipantSeance = require('./ParticipantsSeance');
 const Departement = require('../Departement');
@@ -21,14 +20,6 @@ Seance.init(
       type: DataTypes.STRING(5),
       allowNull: false,
     },
-    // formation: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: Formation,
-    //     key: 'id',
-    //   },
-    // },
     module: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -55,11 +46,6 @@ Seance.init(
     modelName: 'Seance', 
   }
 );
-
-// Seance.belongsTo(Formation, {
-//   foreignKey: 'formation',
-//   onDelete: 'CASCADE'
-// });
 
 Seance.belongsTo(Module, {
   foreignKey: 'module',
