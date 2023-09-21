@@ -50,7 +50,6 @@ const CollabDepartement = () => {
     (collab) => collab.idDepartement.toString() === id.toString()
   );
   
-  // Vérifiez les collaborateurs après le filtrage
 
   const nomdepartement= departement.filter((departement)=>departement.id.toString()=== id.toString());
   const departementsUniques = Array.from(new Set(nomdepartement.map(dep => dep.nomDepartement)));
