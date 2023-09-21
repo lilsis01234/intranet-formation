@@ -15,13 +15,10 @@ const Home = () => {
 
         if (role.toLowerCase() === 'administrateur'){
             navigate('/admin/home')
-            // console.log('Redirection vers le page administrateur');
         } if (role.toLowerCase() === 'user'){
-            navigate('/user/profile')//A changer quand une nouvelle module soit installer
-            // console.log('Redirection vers le page user')
+            navigate('/user/home')
         }
         if(role.toLowerCase() === 'invite'){
-            console.log('io fa nitovy')
             navigate('/invite')
         }
     }, [navigate]);

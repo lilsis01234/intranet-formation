@@ -11,10 +11,7 @@ const HomeInvite = () => {
         }
         const role2 = localStorage.getItem('role2');
 
-        console.log(role2)
-
         if (role2.toLowerCase() === 'formateurext'){
-            console.log('nitovy koa ito')
             navigate('/formateurExt')
         }
     }, [navigate]);
