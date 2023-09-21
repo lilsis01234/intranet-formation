@@ -10,6 +10,7 @@ import {FiSettings} from 'react-icons/fi'
 const UserProfile = () => {
 
     const idProfile = localStorage.getItem('id');
+    console.log(idProfile)
     const [collaborateurData, setCollaborateurData] = useState(null);
     const navigate = useNavigate();
    
