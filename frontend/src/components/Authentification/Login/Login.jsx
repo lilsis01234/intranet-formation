@@ -8,10 +8,10 @@ function Login(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const token = localStorage.getItem('jwt');
-    if(token){
-        navigate('/home');
-    }
+    // const token = localStorage.getItem('jwt');
+    // if(token){
+    //     navigate('/home');
+    // }
 
     
 
@@ -29,21 +29,21 @@ function Login(props){
         axios.post('http://localhost:8000/api/auth/login', formData)
         .then((response) => {
             console.log(response.data)
-            const {token, role2, id, idrole} = response.data;
+            const {  id, role, role2, token} = response.data;
            localStorage.setItem('jwt', token);
            localStorage.setItem('role2', role2);
+           localStorage.setItem('role', role);
            localStorage.setItem('id', id);
-           localStorage.setItem('idrole', idrole);
-
+           const titrerole2 = localStorage.getItem('role2');
+           console.log(titrerole2)
             // Cookies.set('jwt', token)
             navigate('/home');
+
         })
         .catch((error) => {
             console.error(error);
         })
     }
-    const idrole = localStorage.getItem('idrole');
-    console.log(idrole);
     return(
         <div className="login">
            <h1 className="login-title">Connexion</h1>

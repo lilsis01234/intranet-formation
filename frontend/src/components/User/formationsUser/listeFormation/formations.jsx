@@ -23,8 +23,9 @@ const ListeFormationUser = () => {
         navigate('/');
     }
 
-    const role = localStorage.getItem('role'); 
-    if (!(role === "User")){
+    const role2 = localStorage.getItem('role2'); 
+    console.log(role2);
+    if (!(role2 === "User")){
         navigate('/home');
     }
     }, [navigate])
@@ -81,7 +82,7 @@ const ListeFormationUser = () => {
                     <th className="w-60">Description</th>
                     <th className="w-60">Organisateur(trice)</th>
                     <th className="w-60">Voir plus</th>
-                    <th className="w-60">Accéder au forum</th>
+                    {/* <th className="w-60">Accéder au forum</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -89,7 +90,7 @@ const ListeFormationUser = () => {
                   <tr key={formation.id}>
                     <td className="w-40">{formation.theme}</td>
                     <td className="w-60">{formation.description}</td>
-                    <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
+                    <td className='w-60'>{formation.Formateur.nom} {formation.Formateur.prenom}</td>
                     <td className="w-60">
                       <button className="table_item_icon"><Link to= {`/user/formation/${formation.id}`}>Voir plus</Link></button>
                     </td>
@@ -99,7 +100,7 @@ const ListeFormationUser = () => {
                   <tr key={formation.id}>
                     <td className="w-40">{formation.theme}</td>
                     <td className="w-60">{formation.description}</td>
-                    <td className='w-60'>{formation.nomformateur} {formation.prenomformateur}</td>
+                    <td className='w-60'>{formation.Formateur.nom} {formation.Formateur.prenom}</td>
                     <td className="w-60">
                       <button className="table_item_icon"><Link to= {`/user/formation/${formation.id}`}>Voir plus</Link></button>
                     </td>

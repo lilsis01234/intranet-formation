@@ -22,9 +22,6 @@ return(
        return(
            <section className="homeSlide contentWidth">
            <div className="box d_flex top" key={index}> 
-                {/* <div className='img_new_collab'>
-                   <img src={`http://localhost:8000/${collab.image}`} alt={collab.nom} className="w-75 h-80 object-cover" />
-                </div> */}
                 <div className='info_new_collab'>
                    <h1 className="text-center text-3xl p-5 nom">{form.nom} {form.prenom}</h1>
                    <h4 className="text-black text-center text-m" >{form.titrePoste}</h4>

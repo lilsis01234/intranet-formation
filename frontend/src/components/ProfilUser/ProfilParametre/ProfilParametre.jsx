@@ -7,6 +7,8 @@ import { FiAlertCircle } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 import NavBarUser from '../../User/NavBarUser/NavBarUser'
 import SideBarUser from '../../User/SideBar/SideBarUser'
+import NavBarFormateurExt from '../../User/FormateurExt/NavBarFormateurExt/NavBarFormateurExt'
+import SideBarFormateurExt from '../../User/FormateurExt/SideBarFormateurExt/SideBarFormateurExt'
 
 
 const ProfilParametre = () => {
@@ -51,11 +53,22 @@ const ProfilParametre = () => {
     
   return (
     <div className="page">
-        {role === 'Administrateur' ?
-            <Navbar /> : <NavBarUser/>
-        }
-        <div className="content">
-            {role === 'Administrateur' ? <SideBar/> : <SideBarUser/>}
+   {role === 'Administrateur' ? (
+            <Navbar />
+            ) : role === 'User' ? (
+            <NavBarUser />
+            ) : (
+            <NavBarFormateurExt />
+            )}
+
+            <div className="content">
+            {role === 'Administrateur' ? (
+            <SideBar />
+            ) : role === 'User' ? (
+            <SideBarUser />
+            ) : (
+            <SideBarFormateurExt />
+            )}
             <div className="main-content">
               <div className="flex flex-col items-center justify-center">
                 <Card className="m-10 w-1/2">

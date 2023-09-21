@@ -15,7 +15,7 @@ const FormationsSuggestion = () => {
       useEffect(() => {
         fetchFormations();
       }, [])
-        console.log(Sugg)
+  
         return (
             <div className='collabListes'>
             <h1 className="collabListes_title font-bold">Vos demandes de formations</h1>

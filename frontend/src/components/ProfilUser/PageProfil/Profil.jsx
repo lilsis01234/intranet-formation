@@ -13,7 +13,8 @@ import ModifierProfil from '../ModifierProfil/ModifierProfil'
 import NavBarUser from '../../User/NavBarUser/NavBarUser'
 import { useNavigate } from 'react-router'
 import SideBarUser from '../../User/SideBar/SideBarUser'
-
+import NavBarFormateurExt from '../../User/FormateurExt/NavBarFormateurExt/NavBarFormateurExt'
+import SideBarFormateurExt from '../../User/FormateurExt/SideBarFormateurExt/SideBarFormateurExt'
 
 
 const Profil = () => {
@@ -72,12 +73,22 @@ const Profil = () => {
 
     return (
         <div className="page">
-            {role === 'Administrateur' ?
-                <Navbar /> : <NavBarUser />
-            }
+           {role === 'Administrateur' ? (
+            <Navbar />
+            ) : role === 'User' ? (
+            <NavBarUser />
+            ) : (
+            <NavBarFormateurExt />
+            )}
+
             <div className="content">
-                {role === 'Administrateur' ? <SideBar/> : <SideBarUser/>
-                }
+            {role === 'Administrateur' ? (
+            <SideBar />
+            ) : role === 'User' ? (
+            <SideBarUser />
+            ) : (
+            <SideBarFormateurExt />
+            )}
                 <div className="main-content">
                     <div className="bg-black rounded-md userProfile flex flex-row">
                         <div className="m-8 p-5 grid grid-row-3">

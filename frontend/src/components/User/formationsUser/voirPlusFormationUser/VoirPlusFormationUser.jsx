@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 const VoirPlusFormationUser = () => {
     const navigate = useNavigate();
     useEffect(() => {
-        // const token = Cookies.get('jwt');
         const token = localStorage.getItem('jwt');
         console.log(token);
         if (!token){
@@ -13,10 +12,12 @@ const VoirPlusFormationUser = () => {
         }
     
         const role = localStorage.getItem('role'); 
-        if (!(role === "User")){
+        if (!(role.toLowerCase === "user")){
             navigate('/home');
         }
         }, [navigate])
+
+        
         
   return (
     <div>

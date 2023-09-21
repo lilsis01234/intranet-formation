@@ -2,21 +2,25 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import SideBarFormateurExt from '../SideBarFormateurExt/SideBarFormateurExt';
 import NavBarFormateurExt from '../NavBarFormateurExt/NavBarFormateurExt'
-
+import FormationsSuggestion from '../FormationsSuggestion/FormationsSuggestion';
 const HomeFormateur = () => {
     const Navigate = useNavigate()
     const role2 = localStorage.getItem('role2');
     console.log(role2)
 
-    if(!role2==="FormateurExt"){
+    if(!role2.toLowerCase==="formateurExt"){
         Navigate('/')
     }
   return (
     <>
+    <div className="page">
     <NavBarFormateurExt/>
-    <div className="content">
+     <div className="content">
         <SideBarFormateurExt/>
-        <h1>Bienvenue sur votre plateforme de formation chez Sahaza Group</h1>
+        <div>
+        <FormationsSuggestion/>
+        </div>
+    </div>
     </div>
     </>
   )

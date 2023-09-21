@@ -7,8 +7,6 @@ import {FaRegUser} from 'react-icons/fa'
 import {FiSettings} from 'react-icons/fi'
 
 
-
-
 const UserProfile = () => {
 
     const idProfile = localStorage.getItem('id');
@@ -29,8 +27,6 @@ const UserProfile = () => {
     if(!collaborateurData){
         return <div>Chargement en cours</div>
     } 
-
-
 
     return (
         <>

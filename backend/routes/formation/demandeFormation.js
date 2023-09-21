@@ -6,15 +6,14 @@ const Sequelize = require('sequelize');
 
 const Collaborateur = require('../../Modele/Collaborateur');
 const Departement = require('../../Modele/Departement');
-// const DemandeFormation = require('../../Modele/formation/demandeFormation');
 const Role2 = require('../../Modele/Role2');
 const Module = require('../../Modele/formation/Module');
 const Formation = require('../../Modele/formation/Formation');
 const sequelize = require('../../database/database');
+const DiscussionFormation = require('../../Modele/formation/discussionFormation');
+const Seance = require('../../Modele/formation/Seance');
 
 
-
-// 19 April
 //demandes acceptées par la direction
   router.get('/all_confirmed_formations', async (req, res) => {
     const idDirection = await Role2.findOne ({
@@ -47,7 +46,7 @@ const sequelize = require('../../database/database');
         {
           model: Departement,
           as: 'Departement',
-          attributes: ['nomDepartement'], // Supposons que vous voulez seulement le nom du département, ajustez-le en conséquence.
+          attributes: ['nomDepartement'],
         },
       ],
       attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer'],
@@ -257,50 +256,60 @@ router.post('/annulerapprobation/:id', async (req, res) => {
             { where: { id: formationId,
               destinataireDemande:idCoatch.id } }
         );
-
         if (updatedFormation[0] === 0) {
             return res.status(404).json({ message: "Formation not found." });
         }
-
         return res.status(200).json({ message: "Formation approved successfully." });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "An error occurred while approving the formation." });
-    }
+    } 
 });
 
 
 //desapprobation
 router.delete('/desapprouver/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const deleteDemandeFormation = await Formation.findByPk(id);
-        if (!deleteDemandeFormation) {
-            return res.status(404).json({ error: 'Formation introuvable' });
-        }
-        
-        // Supprimer les séances associées
-        await Seance.destroy({
-            where: {
-                formation: id
-            }
-        });
+  const { id } = req.params;
+  try {
+      const deleteDemandeFormation = await Formation.findByPk(id);
+      if (!deleteDemandeFormation) {
+          return res.status(404).json({ error: 'Formation introuvable' });
+      }
+      
+      const modules = await Module.findAll({
+          where: {
+              formation: id
+          }
+      });
 
-        // Supprimer les modules associés
-        await Module.destroy({
-            where: {
-                formation: id
-            }
-        });
+      // Supprimer les séances associées à chaque module
+      for (const module of modules) {
+          await Seance.destroy({
+              where: {
+                  module: module.id
+              }
+          });
+      }
 
-        // Supprimer la formation elle-même
-        await deleteDemandeFormation.destroy();
+      await DiscussionFormation.destroy({
+          where: {
+              formation: id
+          }
+      });
 
-        res.sendStatus(204);
-    } catch (error) {
-        console.error('Erreur lors de la suppression :', error);
-        res.status(500).json({ message: 'Erreur lors de la suppression' });
-    }
+      // Supprimer les modules associés
+      for (const module of modules) {
+          await module.destroy();
+      }
+
+      // Supprimer la formation elle-même
+      await deleteDemandeFormation.destroy();
+
+      res.sendStatus(204);
+  } catch (error) {
+      console.error('Erreur lors de la suppression :', error);
+      res.status(500).json({ message: 'Erreur lors de la suppression' });
+  }
 });
 
 // ajout demande de formation

@@ -7,8 +7,6 @@ const ListeFormationAdmin = () => {
   const[recherche,setRecherche] = useState('');
   const[formationfiltre, setFormationsfiltre] = useState([]);
 
-  // const id = localStorage.getItem('id');
-  //Pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
   // Nombre d'éléments par page 
   const itemsPerPage = 15;
@@ -25,17 +23,6 @@ const ListeFormationAdmin = () => {
   }, [])
   console.log(formations)
 
-  // const handleCancel= (formationId) => {
-  //   axios.post(`http://localhost:8000/api/formation/annulerapprobation/${formationId}`)
-  //       .then(response => {
-  //           console.log(response.data); // Message de succès ou d'erreur
-  //           // Effectuer des actions supplémentaires si nécessaire
-  //           fetchCollaborateur();
-  //       })
-  //       .catch(error => {
-  //           console.error("Error:", error);
-  //       });
-  // };
   
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -58,11 +45,9 @@ const ListeFormationAdmin = () => {
             <div className="search_form">
               <input type="text"placeholder="Rechercher une formation" value={recherche} onChange={(e)=>{setRecherche(e.target.value)}} className=""></input>
               <button className="search_Button"> Rechercher </button>
-              {/* <Link to="#" className="AddCollab_Link">Organiser une formation</Link> */}
             </div>
           </div>
           <div className="search_form">
-          {/* <Link to={`/mesFormationsAdmin/${id}`} className="AddCollab_Link">Formations que j'ai organisées</Link> */}
           <Link to = "#" className="AddCollab_Link">Formations auquelles j'ai assistées</Link>
           </div>
       </div>
@@ -87,9 +72,6 @@ const ListeFormationAdmin = () => {
             <td className="w-60">
               <button className="table_item_icon"><Link to= {`/admin/formation/${formation.id}`}>Voir plus</Link></button>
             </td>
-            {/* <td className="w-60">
-                <button className="table_item_icon" onClick={() => handleCancel(formation.id)}>Annuler l'approbation</button>
-              </td> */}
             </tr>
         ))) : (
         formationfiltre.filter((formations)=>formations.theme.toLowerCase().includes(recherche.toLowerCase()) || formations.description.toLowerCase().includes(recherche.toLowerCase())).map((formation) => (
@@ -100,9 +82,6 @@ const ListeFormationAdmin = () => {
               <td className="w-60">
                 <button className="table_item_icon"><Link to= {`/admin/formation/${formation.id}`}>Voir plus</Link></button>
               </td>
-              {/* <td className="w-60">
-                <button className="table_item_icon" onClick={() => handleCancel(formation.id)}>Annuler l'approbation</button>
-              </td> */}
             </tr>
         ))
         )}

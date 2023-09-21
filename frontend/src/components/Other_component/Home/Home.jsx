@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 const Home = () => {
@@ -9,25 +9,22 @@ const Home = () => {
         if (!token){
             navigate('/');
         }
+
         const role = localStorage.getItem('role');
+        console.log(role)
 
-
-        if (role === 'Administrateur'){
-            navigate('/admin/home');
-            console.log('Redirection vers le page administrateur');
-        } if (role === 'User'){
-            navigate('/user/profile'); //A changer quand une nouvelle module soit installer
-            console.log('Redirection vers le page user');
+        if (role.toLowerCase() === 'administrateur'){
+            navigate('/admin/home')
+            // console.log('Redirection vers le page administrateur');
+        } if (role.toLowerCase() === 'user'){
+            navigate('/user/profile')//A changer quand une nouvelle module soit installer
+            // console.log('Redirection vers le page user')
         }
-        else{
+        if(role.toLowerCase() === 'invite'){
+            console.log('io fa nitovy')
             navigate('/invite')
         }
     }, [navigate]);
-  return (
-    <div>
-      
-    </div>
-  )
 }
 
 export default Home
