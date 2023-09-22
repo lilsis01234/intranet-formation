@@ -10,7 +10,7 @@ const Module = require('../../Modele/formation/Module');
 const Role2 = require('../../Modele/Role2');
 const Departement = require('../../Modele/Departement')
 
-//Toutes les formations dont tout le mmonde peut assister
+//Toutes les formations dont tout le monde peut assister
 router.get('/all_formations', async(req,res) => {
     Formation.findAll({
         include: [
