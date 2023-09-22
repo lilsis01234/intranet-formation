@@ -41,8 +41,8 @@ router.get('/all_formations', async(req,res) => {
                 [Op.or]: [
                     { approbation1: 1 }, // Formation sans approbation nécessaire
                     { destinataireDemande: null }, // Formation sans destinataire spécifique
-                    {departementAFormer:null},
-                    {personneAFormer:null},
+                    {departementAFormer:null},//Formation sans departement spécifique
+                    {personneAFormer:null},//Formation sans personne spécifique à former
                 ],
             },
     })
