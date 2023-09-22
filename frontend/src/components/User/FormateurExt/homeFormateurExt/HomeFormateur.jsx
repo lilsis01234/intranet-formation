@@ -1,16 +1,25 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import SideBarFormateurExt from '../SideBarFormateurExt/SideBarFormateurExt';
 import NavBarFormateurExt from '../NavBarFormateurExt/NavBarFormateurExt'
 import FormationsSuggestion from '../FormationsSuggestion/FormationsSuggestion';
 const HomeFormateur = () => {
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     const role2 = localStorage.getItem('role2');
     console.log(role2)
 
-    if(!role2.toLowerCase==="formateurExt"){
-        Navigate('/')
-    }
+    useEffect(() => {
+      const token = localStorage.getItem('jwt');
+      if (!token) {
+        navigate('/');
+      }
+  
+      const role2 = localStorage.getItem('role2');
+      if (!(role2.toLowerCase() === 'formateurext')) {
+        navigate('/');
+      }
+    }, [navigate]);
+
   return (
     <>
     <div className="page">
