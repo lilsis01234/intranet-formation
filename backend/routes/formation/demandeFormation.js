@@ -16,10 +16,10 @@ const Seance = require('../../Modele/formation/Seance');
 
 //demandes acceptées par la direction
   router.get('/all_confirmed_formations', async (req, res) => {
-    const idDirection = await Role2.findOne ({
+    const idConsultant = await Role2.findOne ({
       where : {
         titreRole2: {
-          [Sequelize.Op.like]: "direction"
+          [Sequelize.Op.like]: "formateurExt"
         }
     }})
     Formation.findAll({
@@ -51,8 +51,8 @@ const Seance = require('../../Modele/formation/Seance');
       ],
       attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer'],
       where: {
-        approbation1: 1,
-        destinataireDemande:idDirection.id,
+        approbation1: 0,
+        destinataireDemande:idConsultant.id,
       },
     })
       .then((formationapprouved) => {
@@ -77,7 +77,7 @@ const Seance = require('../../Modele/formation/Seance');
   });
 
 
-// envoi des demandes pour la direction à partir des RRH, approbation des RRH
+// envoi des demandes pour la direction à partir des RRH
 router.post('/envoiDirection/:id', async (req, res) => {
   const formationId = req.params.id;
 
@@ -164,11 +164,17 @@ const idDirection = await Role2.findOne ({
 //approbation de la direction
 router.post('/approbationDirection/:id', async (req, res) => {
   const formationId = req.params.id;
-  
+  const idConsultant = await Role2.findOne ({
+    where : {
+      titreRole2: {
+        [Sequelize.Op.like]: "formateurext"
+      }
+  }})
+
   try {
       const updatedFormation = await Formation.update(
-          {approbation1:1,
-           destinataireDemande:null},
+          {approbation1:0,
+           destinataireDemande:idConsultant.id},
           { where: { id: formationId } }
       );
 

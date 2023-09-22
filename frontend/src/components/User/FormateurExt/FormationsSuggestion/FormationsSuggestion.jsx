@@ -28,12 +28,10 @@ const FormationsSuggestion = () => {
                         <tr>
                             <th className="w-40">Thème</th>
                             <th className="w-60">Description</th>
-                            <th className="w-60">Demandeur</th>
+                            <th className="w-60">Auteur</th>
                             <th className="w-60">Departement à former</th>
                             <th className="w-60">Personne à former</th>
                             <th className="w-60">Prendre le relai</th>
-
-                            {/* <th className="w-60">Accéder au forum</th> */}
                         </tr>
                         </thead>
                         <tbody>
