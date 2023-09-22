@@ -54,6 +54,9 @@ router.get('/all_formations', async(req,res) => {
     }) 
 })
 
+
+//les formations qu'une équipe doit assister 
+ 
 //Les formations dont une personne doit assister à cause d'une demande 
 router.get('/all_formations/:idPersonne', async(req,res) => {
     const idPersonne = req.params.idPersonne
