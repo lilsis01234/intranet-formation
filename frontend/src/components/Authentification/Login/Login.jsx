@@ -8,11 +8,10 @@ function Login(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // const token = localStorage.getItem('jwt');
-    // if(token){
-    //     navigate('/home');
-    // }
-
+    const token = localStorage.getItem('jwt');
+    if(token){
+        navigate('/home');
+    }
     
 
     //Gestionnaire d'évenement lors de la soumission du formulaire
