@@ -25,4 +25,21 @@ router.get('/all_discussions/:idformation', async(req,res)=>{
         }
     });
 
+    router.post('/nouveauDiscussion',async(req,res)=>{
+        try{
+            const newDiscussion = await(DiscussionFormation.create({
+                sujet:req.body.sujet,
+                contenu:req.body.contenu,
+                formateur:req.body.formateur,
+                formation:req.body.formation,
+                collaborateur:req.body.collaborateur,
+                module:req.body.module,
+            }))
+            const newdiscussion = await newDiscussion.save();
+            res.status(201).json(newdiscussion);
+        }
+        catch(err){
+            console.error(err)
+        }
+    })
 module.exports = router;
