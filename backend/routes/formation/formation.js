@@ -174,8 +174,6 @@ router.get('/all_informations/:idformation', async(req,res)=>{
     });
 
     //demandes de formations d'une personne
-
-
     router.get('/mesDemandes/:idPersonne', async (req, res) => {
       const idPersonne = req.params.idPersonne;
     
@@ -188,11 +186,8 @@ router.get('/all_informations/:idformation', async(req,res)=>{
             ],
           },
         });
-    
-        // Handle the formations data as needed
         res.json(formations);
       } catch (error) {
-        // Handle any errors
         console.error(error);
         res.status(500).send('Internal Server Error');
       }
