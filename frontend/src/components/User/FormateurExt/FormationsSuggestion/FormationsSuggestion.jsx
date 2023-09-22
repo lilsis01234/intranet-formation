@@ -43,7 +43,7 @@ const FormationsSuggestion = () => {
                            {formation.departementAFormer !== null
                            &&
                            ( 
-                           <td className='w-60'>demande à former {formation.departementAFormer}</td>)
+                           <td className='w-60'>demande à former l'équipe {formation.departementAFormer}</td>)
                            }
                            {formation.personneAFormer !== null
                            &&
@@ -51,7 +51,7 @@ const FormationsSuggestion = () => {
                            <td className='w-60'>demande à former {formation.personneAFormer}</td>)
                            }
                             <td className='w-60'> <button className="table_item_icon"><Link to= "#">Accepter de prendre en charge cette formation</Link></button></td>
-                        </tr>))}
+                        </tr>))} 
                         </tbody>
                     </table>
                     </>) 
