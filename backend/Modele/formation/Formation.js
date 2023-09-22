@@ -42,6 +42,7 @@ Formation.init({
         key : 'id'
     }
     },
+    //A changer par equipe après le model équipe de intranet 244
     departementAFormer:{
         type : DataTypes.INTEGER,
         allowNull : true,
