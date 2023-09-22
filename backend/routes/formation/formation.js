@@ -56,7 +56,49 @@ router.get('/all_formations', async(req,res) => {
 
 
 //les formations qu'une équipe doit assister 
- 
+router.get('/all_formations_equipe/:idEquipe', async(req,res) => {
+  const idEquipe = req.params.idEquipe
+  Formation.findAll({
+      include: [
+          {
+            model: Collaborateur,
+            as: 'Auteur',
+            attributes: ['nom', 'prenom'],
+          },
+          {
+            model: Role2,
+            as: 'Roledestinataire',
+            attributes: ['titreRole'],
+          },
+          {
+            model: Collaborateur,
+            as: 'Collaborateur',
+            attributes: ['nom', 'prenom'],
+          },
+          {
+            model: Collaborateur,
+            as: 'Formateur',
+            attributes: ['nom', 'prenom'],
+          },
+          {
+            model: Departement,
+            as: 'Departement',
+            attributes: ['nomDepartement'], // Supposons que vous voulez seulement le nom du département, ajustez-le en conséquence.
+          },
+        ],
+        attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer','destinataireDemande'],
+      where:
+      {
+          approbation1: 1,
+          departementAFormer:idEquipe,
+      },
+  })
+  .then((formation) => {
+      res.status(200).json(formation)
+      console.log(formation)
+  }) 
+})
+
 //Les formations dont une personne doit assister à cause d'une demande 
 router.get('/all_formations/:idPersonne', async(req,res) => {
     const idPersonne = req.params.idPersonne
