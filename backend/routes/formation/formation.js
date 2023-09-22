@@ -9,6 +9,8 @@ const Seance = require('../../Modele/formation/Seance');
 const Module = require('../../Modele/formation/Module');
 const Role2 = require('../../Modele/Role2');
 const Departement = require('../../Modele/Departement')
+const Sequelize = require('sequelize');
+
 
 //Toutes les formations dont tout le monde peut assister
 router.get('/all_formations', async(req,res) => {
@@ -38,7 +40,7 @@ router.get('/all_formations', async(req,res) => {
           attributes: ['id', 'theme', 'description', 'auteur', 'personneAFormer', 'formateur', 'departementAFormer'],
             where:
             {
-                [Op.or]: [
+                [Sequelize.Op.and]: [
                     { approbation1: 1 }, // Formation sans approbation nécessaire
                     { destinataireDemande: null }, // Formation sans destinataire spécifique
                     {departementAFormer:null},//Formation sans departement spécifique
@@ -126,6 +128,33 @@ router.get('/all_informations/:idformation', async(req,res)=>{
         }
     });
 
+    //demandes de formations d'une personne
+
+
+    router.get('/mesDemandes/:idPersonne', async (req, res) => {
+      const idPersonne = req.params.idPersonne;
+    
+      try {
+        const formations = await Formation.findAll({
+          where: {
+            [Sequelize.Op.and]: [
+              { auteur: idPersonne },
+              { destinataireDemande: { [Sequelize.Op.not]: null } }, // Add this condition
+            ],
+          },
+        });
+    
+        // Handle the formations data as needed
+        res.json(formations);
+      } catch (error) {
+        // Handle any errors
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+      }
+    });
+    
+
+
 //Les formations organisées par une personne
 router.get('/formations/:idPersonne',async(req,res)=>{
     const idPersonne = req.params.idPersonne;
@@ -161,8 +190,8 @@ router.post('/addFormation',async(req,res)=>{
             auteur:req.body.auteur,
             approbation1:1
         }))
-        const demandeFormation = await newFormation.save();
-        res.status(201).json(demandeFormation);
+        const formation = await newFormation.save();
+        res.status(201).json(formation);
     }
     catch(err){
         console.error(err)
