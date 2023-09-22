@@ -19,11 +19,6 @@ router.get('/all_formations', async(req,res) => {
               as: 'Auteur',
               attributes: ['nom', 'prenom'],
             },
-            // {
-            //   model: Role2,
-            //   as: 'Roledestinataire',
-            //   attributes: ['titreRole'],
-            // },
             {
               model: Collaborateur,
               as: 'Collaborateur',
