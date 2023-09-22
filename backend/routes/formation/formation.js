@@ -219,7 +219,7 @@ router.get('/formations/:idPersonne',async(req,res)=>{
     }) 
 })
 
-//Ajout de formation par un formateur sans besoin d'approbation
+//Ajout de formation par un formateur interne de l'entreprise
 router.post('/addFormation',async(req,res)=>{
     try{
         const newFormation = await(Formation.create({
