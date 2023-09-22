@@ -10,7 +10,7 @@ const Role2 = require('../../Modele/Role2');
 const Module = require('../../Modele/formation/Module');
 const Formation = require('../../Modele/formation/Formation');
 const sequelize = require('../../database/database');
-const DiscussionFormation = require('../../Modele/formation/discussionFormation');
+const DiscussionFormation = require('../../Modele/formation/DiscussionFormation');
 const Seance = require('../../Modele/formation/Seance');
 const { resourceLimits } = require('worker_threads');
 

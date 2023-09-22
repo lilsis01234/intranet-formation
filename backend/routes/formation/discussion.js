@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser')
 router.use(cookieParser());
 
 const Collaborateur = require('../../Modele/Collaborateur');
-const DiscussionFormation = require('../../Modele/formation/discussionFormation');
+const DiscussionFormation = require('../../Modele/formation/DiscussionFormation');
 
 router.get('/all_discussions/:idformation', async(req,res)=>{
     const formationId = req.params.idformation;

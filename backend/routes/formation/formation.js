@@ -90,7 +90,7 @@ router.get('/all_formations_equipe/:idEquipe', async(req,res) => {
       where:
       {
           approbation1: 1,
-          departementAFormer:idEquipe,
+          departementAFormer:idEquipe,//A changer par le model équipe
       },
   })
   .then((formation) => {
@@ -172,6 +172,7 @@ router.get('/all_informations/:idformation', async(req,res)=>{
             res.status(500).json({ message: 'Erreur lors de la récupération des informations de la formation' });
         }
     });
+
 
     //demandes de formations d'une personne
     router.get('/mesDemandes/:idPersonne', async (req, res) => {
