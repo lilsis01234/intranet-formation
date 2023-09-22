@@ -10,7 +10,7 @@ const FormationsSuggestion = () => {
         axios.get('http://localhost:8000/api/demande_formation/all_confirmed_formations')
           .then(res => {setListSuggestion(res.data)})
           .catch(err => console.log(err));
-      }
+    }
       
       useEffect(() => {
         fetchFormations();
@@ -24,7 +24,7 @@ const FormationsSuggestion = () => {
                 (
                     <>
                     <table className="listDepartementUser_table">
-                        <thead>
+                        {/* <thead>
                         <tr>
                             <th className="w-40">Thème</th>
                             <th className="w-60">Description</th>
@@ -33,7 +33,7 @@ const FormationsSuggestion = () => {
                             <th className="w-60">Personne à former</th>
                             <th className="w-60">Prendre le relai</th>
                         </tr>
-                        </thead>
+                        </thead> */}
                         <tbody>
                         {Sugg.map((formation)=> (
                         <tr key={formation.id}>
@@ -41,21 +41,16 @@ const FormationsSuggestion = () => {
                             <td className="w-60">{formation.description}</td>
                             <td className='w-60'>{formation.auteur}</td>
                            {formation.departementAFormer !== null
-                           ? 
+                           &&
                            ( 
-                           <td className='w-60'>{formation.departementAFormer}</td>)
-                           : 
-                           (<td className='w-60'>Tous</td>)
+                           <td className='w-60'>demande à former {formation.departementAFormer}</td>)
                            }
-
                            {formation.personneAFormer !== null
-                           ? 
+                           &&
                            ( 
-                           <td className='w-60'>{formation.personneAFormer}</td>)
-                           : 
-                           (<td className='w-60'>Pas de spécification</td>)
+                           <td className='w-60'>demande à former {formation.personneAFormer}</td>)
                            }
-                            <td className='w-60'> <button className="table_item_icon"><Link to= "#">Organiser cette formation</Link></button></td>
+                            <td className='w-60'> <button className="table_item_icon"><Link to= "#">Accepter de prendre en charge cette formation</Link></button></td>
                         </tr>))}
                         </tbody>
                     </table>

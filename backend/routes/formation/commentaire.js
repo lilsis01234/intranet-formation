@@ -2,9 +2,7 @@ const router = require('express').Router();
 const cookieParser = require('cookie-parser')
 router.use(cookieParser());
 const Commentaire = require('../../Modele/formation/CommentaireFormation')
-// const Formation = require('../../Modele/formation/Formation');
 const Collaborateur = require('../../Modele/Collaborateur');
-// const DiscussionFormation = require('../../Modele/formation/discussionFormation');
 
 router.get('/all_comments/:idDiscussion', async(req,res)=>{
     const formationId = req.params.idDiscussion;
@@ -26,6 +24,7 @@ router.get('/all_comments/:idDiscussion', async(req,res)=>{
         }
     });
 
+    
     router.delete('/deletecomment/:id',async(req,res)=>{
         const idCommentaire = req.params.id
         try {
@@ -47,5 +46,6 @@ router.get('/all_comments/:idDiscussion', async(req,res)=>{
     });
 
     
+//Ajout de commentaire
 
 module.exports = router;

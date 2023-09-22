@@ -17,7 +17,7 @@ DiscussionFormation.init({
         allowNull: false
     },
     fichier:{
-        type:DataTypes.STRING(500),
+        type:DataTypes.STRING(5000),
         allowNull:true
     },
     formation:{
