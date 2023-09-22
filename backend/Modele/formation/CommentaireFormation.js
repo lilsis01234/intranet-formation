@@ -18,6 +18,10 @@ CommentaireFormation.init({
         key : 'id'
     }
     },
+    fichier:{
+        type:DataTypes.STRING(5000),
+        allowNull:true
+    },
     collaborateur:{
         type : DataTypes.INTEGER,
         allowNull : false,

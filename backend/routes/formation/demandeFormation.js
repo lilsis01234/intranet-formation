@@ -12,6 +12,7 @@ const Formation = require('../../Modele/formation/Formation');
 const sequelize = require('../../database/database');
 const DiscussionFormation = require('../../Modele/formation/discussionFormation');
 const Seance = require('../../Modele/formation/Seance');
+const { resourceLimits } = require('worker_threads');
 
 
 //demandes acceptées par la direction
