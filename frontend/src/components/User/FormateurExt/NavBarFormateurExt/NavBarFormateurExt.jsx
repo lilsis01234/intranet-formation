@@ -7,7 +7,6 @@ import '../../../Administrateur/NavBar/NavBarAdmin.css'
 
 
 function Navbar() {
-
   return (
     <div className="navBar">
       <div className="nav-left">
