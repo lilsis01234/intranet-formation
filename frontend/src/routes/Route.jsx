@@ -24,7 +24,7 @@ import VoirPlusFormation from '../components/Administrateur/formationAdmin/VoirP
 import VoirPlusFormationUser from '../components/User/formationsUser/voirPlusFormationUser/VoirPlusFormationUser'
 import HomeFormateur from '../components/User/FormateurExt/homeFormateurExt/HomeFormateur'
 import HomeInvite from '../components/Invite/HomeInvite/HomeInvite'
-
+import MesFormations from '../components/User/FormateurExt/MesFormations/MesFormations'
 
 function AppRoute(){
     return (
@@ -58,6 +58,7 @@ function AppRoute(){
                 
                 {/* Pour les invités */}
                 <Route path="/invite" element={<HomeInvite/>}/>
+                <Route path="/mesFormations" element={<MesFormations/>}/>
                 <Route path="/formateurExt" element={<HomeFormateur/>}/>
 
             </Routes>
