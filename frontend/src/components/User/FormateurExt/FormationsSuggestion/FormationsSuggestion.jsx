@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const FormationsSuggestion = () => {
     const[Sugg, setListSuggestion]= useState([]);
+    const id = localStorage.getItem('idUser');
 
     const fetchFormations = () => {
         axios.get('http://localhost:8000/api/demande_formation/all_confirmed_formations')
@@ -16,6 +17,17 @@ const FormationsSuggestion = () => {
         fetchFormations();
       }, [])
   
+      const handleAcceptFormation = (idFormation) => {
+        axios.post(`http://localhost:8000/api/demande_formation/approuverformext/${idFormation}/${id}`)
+          .then((response) => {
+              console.log(response.data); 
+              fetchFormations(); 
+          })
+          .catch((error) => {
+              console.error(error);
+          });
+        };
+      
         return (
             <div className='collabListes'>
             <h1 className="collabListes_title font-bold">Vos demandes de formations</h1>
@@ -50,7 +62,8 @@ const FormationsSuggestion = () => {
                            ( 
                            <td className='w-60'>demande à former {formation.personneAFormer}</td>)
                            }
-                            <td className='w-60'> <button className="table_item_icon"><Link to= "#">Accepter de prendre en charge cette formation</Link></button></td>
+                           <td className='w-60'> <button className="table_item_icon"><Link to= "#">Voir plus</Link></button></td>
+                            <td className='w-60'> <button className="table_item_icon" onClick={() => handleAcceptFormation(formation.id)}>Accepter de prendre en charge cette formation</button></td>
                         </tr>))} 
                         </tbody>
                     </table>
