@@ -253,7 +253,7 @@ router.post('/annulerapprobation/:id', async (req, res) => {
     const idCoatch = Role2.findOne({
       where:{
         titreRole2:{
-          [sequelize.Op.like]:"Coatch"
+          [sequelize.Op.like]:"coatch"
         }
       }
     })
@@ -318,6 +318,44 @@ router.delete('/desapprouver/:id', async (req, res) => {
       res.status(500).json({ message: 'Erreur lors de la suppression' });
   }
 });
+
+//approbation du formateur externe
+router.post('/approuverformext/:idFormation/:idFormateur',async(req,res)=>{
+  const idFormation = req.params.idFormation;
+  const idFormateur = req.params.idFormateur;
+  try {
+    const updatedFormation = await Formation.update(
+        { approbation1: 1,
+        formateur:idFormateur },
+        { where: { id: idFormation} }
+    );
+    if (updatedFormation[0] === 0) {
+        return res.status(404).json({ message: "Formation not found." });
+    }
+    return res.status(200).json({ message: "Formation approved successfully." ,updatedFormation});
+} catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "An error occurred while approving the formation." });
+} 
+})
+
+//annulation de l'approbation du formateur externe
+router.post('/annulationapprouverformext/:idFormation',async(req,res)=>{
+  const idFormation = req.params.idFormation;
+  try {
+    const updatedFormation = await Formation.update(
+        { approbation1: 0 },
+        { where: { id: idFormation} }
+    );
+    if (updatedFormation[0] === 0) {
+        return res.status(404).json({ message: "Formation not found." });
+    }
+    return res.status(200).json({ message: "Formation approved successfully." ,updatedFormation});
+} catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "An error occurred while approving the formation." });
+} 
+})
 
 // ajout demande de formation
 router.post('/addDemandeFormation',async(req,res)=>{
