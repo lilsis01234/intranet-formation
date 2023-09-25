@@ -35,6 +35,7 @@ router.get('/all_discussions/:idformation', async(req,res)=>{
                 collaborateur:req.body.collaborateur,
                 module:req.body.module,
             }))
+            //fichier à ajouter par multer à regarder su l'appli dokotera
             const newdiscussion = await newDiscussion.save();
             res.status(201).json(newdiscussion);
         }
