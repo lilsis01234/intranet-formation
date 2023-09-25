@@ -9,15 +9,17 @@ const MesFormations = () => {
     const[Sugg, setListSuggestion]= useState([]);
     const id = localStorage.getItem('idUser');
 
-    const fetchFormations = () => {
-        axios.get(`http://localhost:8000/api/formation/formations/${id}`)
-          .then(res => {setListSuggestion(res.data)})
-          .catch(err => console.log(err));
-    }
-      
-      useEffect(() => {
-        fetchFormations();
-      }, [])
+    useEffect(() => {
+        const fetchFormations = () => {
+            axios.get(`http://localhost:8000/api/formation/formations/${id}`)
+              .then(res => {setListSuggestion(res.data)})
+              .catch(err => console.log(err));
+        };
+    
+        fetchFormations(); 
+    
+    }, [id]); 
+    
       
         return (
             <div className="page">
