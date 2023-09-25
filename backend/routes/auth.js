@@ -2,6 +2,7 @@ const CompteCollab = require('../Modele/CompteCollab');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
+const Collaborateur = require('../Modele/Collaborateur')
 
 // require('dotenv').config();
 
@@ -27,7 +28,11 @@ router.post('/login', (req, res, next) => {
                     attributes: ['id','titreRole'] 
                 }
             ]
-            }] 
+            },
+        {
+            model:Collaborateur,
+            attributes:['id']
+        }] 
     })
     .then(comptes => {
         if (!comptes) {
@@ -50,9 +55,9 @@ router.post('/login', (req, res, next) => {
 
                 const roleTitle = userRole.titreRole;
                 const roleTitle2 = userRole2.titreRole2;
-
+                const idUser = comptes.Collaborateur.id
                 const token = jwt.sign(
-                    { id: comptes.id, role: roleTitle, role2: roleTitle2 },
+                    { id: comptes.id,idUser, role: roleTitle, role2: roleTitle2 },
                     secretKey,
                     { expiresIn: '1h' }
                 )
@@ -64,6 +69,7 @@ router.post('/login', (req, res, next) => {
                     role: roleTitle,
                     role2: roleTitle2,
                     token: token,
+                    idUser:idUser
                     // idrole: userRole.id
                 })
 

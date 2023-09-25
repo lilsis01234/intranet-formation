@@ -28,11 +28,13 @@ function Login(props){
         axios.post('http://localhost:8000/api/auth/login', formData)
         .then((response) => {
             console.log(response.data)
-            const {  id, role, role2, token} = response.data;
+            const {  id, role, role2, token, idUser} = response.data;
            localStorage.setItem('jwt', token);
            localStorage.setItem('role2', role2);
            localStorage.setItem('role', role);
            localStorage.setItem('id', id);
+           localStorage.setItem('idUser', idUser);
+
            const titrerole2 = localStorage.getItem('role2');
            console.log(titrerole2)
             // Cookies.set('jwt', token)
