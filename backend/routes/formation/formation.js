@@ -200,22 +200,48 @@ router.get('/all_informations/:idformation', async(req,res)=>{
 router.get('/formations/:idPersonne',async(req,res)=>{
     const idPersonne = req.params.idPersonne;
     Formation.findAll({
+      include: [
+        {
+          model: Collaborateur,
+          as: 'Auteur',
+          attributes: ['nom', 'prenom'],
+        },
+        {
+          model: Role2,
+          attributes: ['titreRole2'],
+        },
+        {
+          model: Collaborateur,
+          as: 'Collaborateur',
+          attributes: ['nom', 'prenom'],
+        },
+        {
+          model: Collaborateur,
+          as: 'Formateur',
+          attributes: ['nom', 'prenom'],
+        },
+        {
+          model: Departement,
+          as: 'Departement',
+          attributes: ['nomDepartement'],
+        },
+      ],
         where: {
-            formateur: idPersonne ,
+            formateur: idPersonne,
         }
     })
     .then((formation) => {
-        res.status(200).json(
-            formation.map((formation) => {
-                return {
-                    id : formation.id,
-                    theme : formation.theme,
-                    description : formation.description,
-                    duree : formation.duree,
-                    approbation : formation.approbation,
-                }
-            })
-        )
+        res.status(200).json(formation.map((formation) => {
+          return {
+            id: formation.id,
+            theme: formation.theme,
+            description: formation.description,
+            auteur: formation.Auteur ? `${formation.Auteur.nom} ${formation.Auteur.prenom}` : null,
+            formateur: formation.Formateur ? `${formation.Formateur.titreRole}` : null,
+            personneAFormer: formation.Collaborateur ? `${formation.Collaborateur.nom} ${formation.Collaborateur.prenom}` : null,
+            departementAFormer: formation.Departement ? formation.Departement.nomDepartement : null,
+          };
+        }))
         console.log(formation)
     }) 
 })
