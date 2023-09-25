@@ -61,6 +61,7 @@ const MesFormations = () => {
                                 <td className='w-60'>demande à former {formation.personneAFormer}</td>)
                                 }
                                 <td className='w-60'> <button className="table_item_icon"><Link to= "#">Voir les détails</Link></button></td>
+                                <td className='w-60'> <button className="table_item_icon"><Link to= "#">Accéder à la discussion</Link></button></td>                                
                                 </tr>))} 
                                 </tbody>
                             </table>
