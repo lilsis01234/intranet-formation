@@ -26,7 +26,6 @@ const ResetPasswordForm = () => {
         .catch((error) => {
             console.error('Erreur lors de la réinitialisation du mot de passe:', error);
         })
-
     }
 
   return (
