@@ -2,8 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import SideBarFormateurExt from '../SideBarFormateurExt/SideBarFormateurExt';
-import NavBarFormateurExt from '../NavBarFormateurExt/NavBarFormateurExt'
+
 
 const MesFormations = () => {
     const[Sugg, setListSuggestion]= useState([]);
