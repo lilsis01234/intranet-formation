@@ -378,6 +378,6 @@ router.post('/addDemandeFormation',async(req,res)=>{
         console.error(err)
     }
 })
-
+//verification des receuils de demandes
 
 module.exports = router;

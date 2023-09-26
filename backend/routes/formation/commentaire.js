@@ -46,6 +46,6 @@ router.get('/all_comments/:idDiscussion', async(req,res)=>{
     });
 
     
-//Ajout de commentaire
+//Ajout de commentaire et fichiers par foreach
 
 module.exports = router;
