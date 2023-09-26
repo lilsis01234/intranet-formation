@@ -8,7 +8,7 @@ import NavBarFormateurExt from '../NavBarFormateurExt/NavBarFormateurExt'
 const MesFormations = () => {
     const[Sugg, setListSuggestion]= useState([]);
     const id = localStorage.getItem('idUser');
-
+    
     useEffect(() => {
         const fetchFormations = () => {
             axios.get(`http://localhost:8000/api/formation/formations/${id}`)
@@ -22,13 +22,7 @@ const MesFormations = () => {
     
       
         return (
-            <div className="page">
-            <NavBarFormateurExt/>
-             <div className="content">
-                <SideBarFormateurExt/>
-                <div>
-                    <div className='collabListes'>
-                    <h1 className="collabListes_title font-bold">Vos formations</h1>
+            <>
                         {Sugg.length !== 0 
                         ?
                         (
@@ -70,10 +64,7 @@ const MesFormations = () => {
                             (
                                 <h3>Vous n'avez pas encore organisé de formation</h3>
                             )}
-                    </div>
-                </div>
-            </div>
-        </div>
+                            </>
         )
 }
 

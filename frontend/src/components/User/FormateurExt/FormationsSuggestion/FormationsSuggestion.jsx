@@ -29,8 +29,7 @@ const FormationsSuggestion = () => {
         };
       
         return (
-            <div className='collabListes'>
-            <h1 className="collabListes_title font-bold">Vos demandes de formations</h1>
+<>
                 {Sugg.length !== 0 
                 ?
                 (
@@ -72,7 +71,7 @@ const FormationsSuggestion = () => {
                     (
                         <h3>Aucune demande de formation pour le moment</h3>
                     )}
-            </div>
+            </>
         )
 }
 

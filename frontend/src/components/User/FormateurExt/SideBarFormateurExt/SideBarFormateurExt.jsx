@@ -15,8 +15,8 @@ const SideBarFormateurExt = () => {
             <div className={`sideBar ${isSidebarOpen ? 'open' : 'closed'}`}>
                 <ul className="sideBar_menu">
                     <li className="sideBar_menu_item " ><Link className="flex flex-row items-center" to="#"><HiOutlineHome className="mr-2"/>Acceuil</Link></li>
-                    <li className="sideBar_menu_item " ><Link className="flex flex-row items-center" to="/formateurExt"><HiOutlineHome className="mr-2"/>Vos demandes de formations</Link></li>
-                    <li className="sideBar_menu_item " ><Link className="flex flex-row items-center" to="/mesFormations"><HiOutlineHome className="mr-2"/>Vos formations</Link></li>
+                    <li className="sideBar_menu_item " ><Link className="flex flex-row items-center" to="/formateurExt"><HiOutlineHome className="mr-2"/>Formations</Link></li>
+                    {/* <li className="sideBar_menu_item " ><Link className="flex flex-row items-center" to="/mesFormations"><HiOutlineHome className="mr-2"/>Vos formations</Link></li> */}
                 </ul>
             </div>
         )}
