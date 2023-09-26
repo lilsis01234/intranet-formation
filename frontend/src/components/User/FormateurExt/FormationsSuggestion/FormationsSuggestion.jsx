@@ -29,7 +29,7 @@ const FormationsSuggestion = () => {
         };
       
         return (
-<>
+            <>
                 {Sugg.length !== 0 
                 ?
                 (
@@ -67,10 +67,10 @@ const FormationsSuggestion = () => {
                         </tbody>
                     </table>
                     </>) 
-                    :
-                    (
-                        <h3>Aucune demande de formation pour le moment</h3>
-                    )}
+                :
+                (
+                    <h3>Aucune demande de formation pour le moment</h3>
+                )}
             </>
         )
 }
