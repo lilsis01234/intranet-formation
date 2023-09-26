@@ -58,7 +58,7 @@ function AppRoute(){
                 
                 {/* Pour les invités */}
                 <Route path="/invite" element={<HomeInvite/>}/>
-                <Route path="/mesFormations" element={<MesFormations/>}/>
+                {/* <Route path="/mesFormations" element={<MesFormations/>}/> */}
                 <Route path="/formateurExt" element={<HomeFormateur/>}/>
 
             </Routes>
