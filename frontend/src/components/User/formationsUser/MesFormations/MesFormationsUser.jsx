@@ -2,7 +2,7 @@ import React from 'react'
 
 const MesFormationsUser = () => {
   return (
-    <div>MesFormationsUser</div>
+    <div>Vos formations particulières</div>
   )
 }
 
