@@ -45,6 +45,7 @@ const FormationsSuggestion = () => {
                             <th className="w-60">Prendre le relai</th>
                         </tr>
                         </thead> */}
+                        {/* amboarina ny structure, design anle demande */}
                         <tbody>
                         {Sugg.map((formation)=> (
                         <tr key={formation.id}>
