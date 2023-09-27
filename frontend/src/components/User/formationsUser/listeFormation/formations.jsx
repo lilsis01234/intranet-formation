@@ -37,7 +37,7 @@ const ListeFormationUser = () => {
       .then(res => {setFormations(res.data)})
       .catch(err => console.log(err));
   }
-  
+  // formations any formateur
   useEffect(() => {
     fetchCollaborateur();
   }, [])
