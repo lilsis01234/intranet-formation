@@ -1,7 +1,7 @@
 const Seance = require('./Seance');
-const Collaborateur = require('../Collaborateur');
+const Collaborateur = require('../CollabModel/Collaborateur');
 const ParticipantsSeance = require('./ParticipantsSeance');
-const Departement = require('../Departement');
+const Departement = require('../Structure/TestDepartement');
 
 Collaborateur.belongsToMany(Seance,{through:ParticipantsSeance,foreignKey:"collaborateur",otherKey:'seance'})
 Seance.belongsToMany(Collaborateur,{through:ParticipantsSeance,foreignKey:"seance",otherKey:'collaborateur'})

@@ -1,26 +1,43 @@
 const sequelize = require('../database/database');
-const Departement = require('../Modele/Departement');
-const Poste = require('../Modele/Poste'); 
-const Collaborateur = require ('../Modele/Collaborateur');
-const CompteCollab = require('../Modele/CompteCollab');
-const RoleCollab = require('../Modele/Role');
-const PasswordResetRequest = require('../Modele/PasswordResetRequest');
-const ArchiveCollab = require('../Modele/ArchiveCollab');
+const Collab = require('../Modele/CollabModel/Collab')
+const Compte = require('../Modele/CompteModel/Compte')
+const InfoSocialCollab = require('../Modele/CollabModel/InfoSocialCollab')
+const ArchiveCollaborateur = require('../Modele/CollabModel/ArchiveCollab')
+const RoleCollab = require('../Modele/RoleModel/Role');
+const RoleHierarchique = require('../Modele/RoleModel/RoleHierarchique')
+const PasswordResetRequest = require('../Modele/CompteModel/PasswordResetRequest');
+const TestPoste = require('../Modele/Structure/TestPoste')
+const TestDepartement = require('../Modele/Structure/TestDepartement')
+const PosteDepartement = require('../Modele/Structure/PosteDepartement')
+const Direction = require('../Modele/Structure/Direction')
+const Projet = require('../Modele/Structure/Projet')
+const Collaborateur = require('../Modele/CollabModel/Collaborateur')
+const Equipe = require('../Modele/Structure/Equipe')
+const Permission = require('../Modele/RoleModel/Permission')
+const RolePermission = require('../Modele/RoleModel/RolePermission')
+const associationRole = require('../Modele/RoleModel/associationPermission')
+const association = require('../Modele/Structure/association')
 const Formation = require('../Modele/formation/Formation');
 const CommentaireFormation = require('../Modele/formation/CommentaireFormation');
 const DiscussionFormation= require('../Modele/formation/DiscussionFormation');
 const Module = require('../Modele/formation/Module');
 const Seance = require('../Modele/formation/Seance');
 const ParticipantsSeance = require('../Modele/formation/ParticipantsSeance');
-// const DemandeFormation = require('../Modele/formation/demandeFormation');
-const Role2 = require('../Modele/Role2');
-const association = require('../Modele/formation/associationSeanceCollab');
+const associationSeance = require('../Modele/formation/associationSeanceCollab');
+
+
+
 
 //Synchronisation de la base de donnée 
 async function syncDatabase(){
     try{
-        await sequelize.sync({force : true}); 
-        const { Seance, Collaborateur, ParticipantsSeance,Departement } = association;
+        await sequelize.sync({force : false}); 
+        const { TestPoste, TestDepartement, PosteDepartement } = association;
+        TestPoste.belongsToMany(TestDepartement, { through: PosteDepartement });
+        TestDepartement.belongsToMany(TestPoste, { through: PosteDepartement });
+
+        const {RoleHierarchique, Permission, RolePermission} = associationRole;
+        const { Seance, Collaborateur, ParticipantsSeance,Departement } = associationSeance;
 
         Collaborateur.belongsToMany(Seance, { through: ParticipantsSeance });
         Departement.belongsToMany(Seance,{ through: ParticipantsSeance })
@@ -32,5 +49,6 @@ async function syncDatabase(){
         sequelize.close();
     }
 }
+
 
 syncDatabase();

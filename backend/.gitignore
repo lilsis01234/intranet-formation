@@ -1,9 +1,4 @@
-node_modules/
-dist/
-
-.idea
-**.log
-
+node_modules
+node_modules/*
 
 .env
-.DS_Store

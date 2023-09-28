@@ -7,15 +7,16 @@ import {FaRegUser} from 'react-icons/fa'
 import {FiSettings} from 'react-icons/fi'
 
 
+
+
 const UserProfile = () => {
 
     const idProfile = localStorage.getItem('id');
-    console.log(idProfile)
     const [collaborateurData, setCollaborateurData] = useState(null);
     const navigate = useNavigate();
    
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/profile/${idProfile}`)
+        axios.get(`http://192.168.16.244:4000/api/user/${idProfile}/profile`)
             .then(response => {
                 setCollaborateurData(response.data)
             })
@@ -29,11 +30,13 @@ const UserProfile = () => {
         return <div>Chargement en cours</div>
     } 
 
+
+
     return (
         <>
             <Menu className="m-10 fixed" placement="bottom-end" >
                 <MenuHandler >
-                   <Avatar src={`http://localhost:8000/${collaborateurData.Collaborateur.image}`} className="mr-10 rounded-full w-16 h-16 object-cover mt-2" />
+                   <Avatar src={`http://192.168.16.244:4000/${collaborateurData.Collab.image}`} className="mr-10 rounded-full w-16 h-16 object-cover mt-2" />
                 </MenuHandler>
                 <MenuList>
                     <MenuItem onClick={() => navigate('/user/profile')} className="flex flex-row"><FaRegUser className="mr-2 text-[#9C1D21]"/> Mon profil</MenuItem>

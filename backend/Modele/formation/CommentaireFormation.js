@@ -1,7 +1,7 @@
 const {DataTypes, Model} = require('sequelize');
 const sequelize = require('../../database/database');
 const DiscussionFormation = require('./DiscussionFormation');
-const Collaborateur = require('../Collaborateur');
+const Collaborateur = require('../CollabModel/Collaborateur');
 
 class CommentaireFormation extends Model{}
 

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 import "./Login.css"
 
 function Login(props){
@@ -8,11 +9,21 @@ function Login(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const token = localStorage.getItem('jwt');
-    if(token){
-        navigate('/home');
-    }
-    
+    useEffect(() => {
+        const token = localStorage.getItem('jwt')
+
+        if (token){
+            const decodedToken = jwt_decode(token)
+            if(decodedToken.exp){
+                navigate('/home')
+
+            } else {
+                localStorage.removeItem('jwt');
+                navigate('/')
+            }
+          
+        } 
+    }, [navigate])
 
     //Gestionnaire d'évenement lors de la soumission du formulaire
     const handleSubmit = (e) => {
@@ -25,26 +36,23 @@ function Login(props){
         //Configuration de axios pour resoudre les problème CROSS
         axios.defaults.withCredentials = true;
 
-        axios.post('http://localhost:8000/api/auth/login', formData)
+        // axios.post('http://192.168.16.244:4000/api/auth/login', formData)
+        axios.post('http://192.168.16.244:4000/api/auth/connect', formData)
         .then((response) => {
-            console.log(response.data)
-            const {  id, role, role2, token, idUser} = response.data;
-           localStorage.setItem('jwt', token);
-           localStorage.setItem('role2', role2);
-           localStorage.setItem('role', role);
-           localStorage.setItem('id', id);
-           localStorage.setItem('idUser', idUser);
-
-           const titrerole2 = localStorage.getItem('role2');
-           console.log(titrerole2)
+            const token = response.data.token;
+            const role = response.data.role;
+            const id = response.data.id;
+            localStorage.setItem('jwt', token);
+            localStorage.setItem('role', role);
+            localStorage.setItem('id', id)
             // Cookies.set('jwt', token)
             navigate('/home');
-
         })
         .catch((error) => {
             console.error(error);
         })
     }
+
     return(
         <div className="login">
            <h1 className="login-title">Connexion</h1>

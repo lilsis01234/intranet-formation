@@ -18,7 +18,7 @@ const ResetPasswordForm = () => {
             return;
         }
 
-        axios.post(`http://localhost:8000/api/password/reset-password/${token}`, {password})
+        axios.post(`http://192.168.16.244:4000/api/password/reset-password/${token}`, {password})
         .then((response) => {
             alert("Le mot de passe a été réinitialisé avec succès")
             navigate("/login");
@@ -26,6 +26,7 @@ const ResetPasswordForm = () => {
         .catch((error) => {
             console.error('Erreur lors de la réinitialisation du mot de passe:', error);
         })
+
     }
 
   return (
