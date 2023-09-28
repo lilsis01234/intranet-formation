@@ -10,19 +10,19 @@ function Login(props){
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        const token = localStorage.getItem('jwt')
+    const token = localStorage.getItem('jwt')
 
-        if (token){
-            const decodedToken = jwt_decode(token)
-            if(decodedToken.exp){
-                navigate('/home')
+    if (token){
+    const decodedToken = jwt_decode(token)
+    if(decodedToken.exp){
+    navigate('/home')
 
-            } else {
-                localStorage.removeItem('jwt');
-                navigate('/')
-            }
+    } else {
+    localStorage.removeItem('jwt');
+    navigate('/')
+    }
           
-        } 
+    } 
     }, [navigate])
 
     //Gestionnaire d'évenement lors de la soumission du formulaire
@@ -39,15 +39,19 @@ function Login(props){
         // axios.post('http://192.168.16.244:4000/api/auth/login', formData)
         axios.post('http://localhost:4000/api/auth/connect', formData)
         .then((response) => {
-            // const token = response.data.token;
-            // const role = response.data.role;
-            // const id = response.data.id;
-            // localStorage.setItem('jwt', token);
-            // localStorage.setItem('role', role);
-            // localStorage.setItem('id', id)
+            const token = response.data.token;
+            const role = response.data.role;
+            const id = response.data.id;
+            const role2 = response.data.role2;
+
+            localStorage.setItem('jwt', token);
+            localStorage.setItem('role', role);
+            localStorage.setItem('id', id);
+            localStorage.setItem('role2', role2);
+
             // Cookies.set('jwt', token)
             console.log(response)
-            // navigate('/home');
+            navigate('/home');
         })
         .catch((error) => {
             console.error(error);
