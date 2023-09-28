@@ -37,16 +37,17 @@ function Login(props){
         axios.defaults.withCredentials = true;
 
         // axios.post('http://192.168.16.244:4000/api/auth/login', formData)
-        axios.post('http://192.168.16.244:4000/api/auth/connect', formData)
+        axios.post('http://localhost:4000/api/auth/connect', formData)
         .then((response) => {
-            const token = response.data.token;
-            const role = response.data.role;
-            const id = response.data.id;
-            localStorage.setItem('jwt', token);
-            localStorage.setItem('role', role);
-            localStorage.setItem('id', id)
+            // const token = response.data.token;
+            // const role = response.data.role;
+            // const id = response.data.id;
+            // localStorage.setItem('jwt', token);
+            // localStorage.setItem('role', role);
+            // localStorage.setItem('id', id)
             // Cookies.set('jwt', token)
-            navigate('/home');
+            console.log(response)
+            // navigate('/home');
         })
         .catch((error) => {
             console.error(error);

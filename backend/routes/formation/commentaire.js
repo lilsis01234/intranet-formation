@@ -2,7 +2,7 @@ const router = require('express').Router();
 const cookieParser = require('cookie-parser')
 router.use(cookieParser());
 const Commentaire = require('../../Modele/formation/CommentaireFormation')
-const Collaborateur = require('../../Modele/Collaborateur');
+const Collaborateur = require('../../Modele/CollabModel/Collab');
 
 router.get('/all_comments/:idDiscussion', async(req,res)=>{
     const formationId = req.params.idDiscussion;

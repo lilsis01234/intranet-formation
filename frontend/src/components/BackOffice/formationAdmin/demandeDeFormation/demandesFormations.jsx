@@ -157,7 +157,7 @@ const Demandes = ()=>{
             <div>
               <div className="collabListes">
                 <button className="visible" onClick={() => setVisible(!listevisible)}>
-                <h1>{listevisible ? 'Voir les demandes de formations' : 'Voir les formations disponibles'}</h1>
+                <h1>{listevisible ? 'Voir les demandes de formations' : 'Voir les formations que vous avez acceptées'}</h1>
                 </button>
                 {listevisible ? <ListeFormationAdmin /> : <Demandes />}
               </div>

@@ -11,7 +11,7 @@ const ModifDirection = ({DirectionToEdit, onDirectionUpdated}) => {
             nomDirection
         }
 
-        axios.put(`http://192.168.16.244:4000/api/direction/edit/${DirectionToEdit.id}`, formData)
+        axios.put(`http://localhost:4000/api/direction/edit/${DirectionToEdit.id}`, formData)
           .then((response) => {
               onDirectionUpdated();
               alert('Direction modifier avec succès')

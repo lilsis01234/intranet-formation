@@ -74,6 +74,7 @@ router.post('/connect', (req, res, next) => {
                 compte : comptes,
                 token : token,
                 role : roles.Role.titreRole,
+                role2:roles.roleHierarchique,
             })
             console.log('Utilisateur connecté avec succés')
             

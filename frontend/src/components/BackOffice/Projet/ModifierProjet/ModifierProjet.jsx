@@ -10,7 +10,7 @@ const ModifierProjet = ({projetToEdit, onUpdateProjet}) => {
 
     //Récupérer les listes des directions
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/departement/all')
+        axios.get('http://localhost:4000/api/departement/all')
             .then((response) => {
                 setListeDeparetment(response.data)
             })
@@ -26,7 +26,7 @@ const ModifierProjet = ({projetToEdit, onUpdateProjet}) => {
             departement,
         }
 
-        axios.put(`http://192.168.16.244:4000/api/projet/edit/${projetToEdit.id}`, formData)
+        axios.put(`http://localhost:4000/api/projet/edit/${projetToEdit.id}`, formData)
             .then((response) => {
                 alert('Projet modifié avec succés')
                 onUpdateProjet()

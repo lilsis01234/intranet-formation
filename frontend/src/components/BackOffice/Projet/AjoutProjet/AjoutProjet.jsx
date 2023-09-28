@@ -9,7 +9,7 @@ const AjoutProjet = ({onProjetAdded}) => {
     const [listDepartement, setListDepartement] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/departement/all')
+        axios.get('http://localhost:4000/api/departement/all')
         .then((response) => {
             setListDepartement(response.data)
         }).catch((error) => {
@@ -24,7 +24,7 @@ const AjoutProjet = ({onProjetAdded}) => {
             departement
         }
 
-        axios.post('http://192.168.16.244:4000/api/projet/new', formData)
+        axios.post('http://localhost:4000/api/projet/new', formData)
         .then((response) => {
             alert('Projet ajouter avec succès')
             onProjetAdded()

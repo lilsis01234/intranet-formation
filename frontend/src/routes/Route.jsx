@@ -17,7 +17,7 @@ import AjoutCollaborateur from '../components/BackOffice/Collaborateur/AjoutColl
 import ListeCollaborateur from '../components/BackOffice/Collaborateur/ListeCollaborateur/ListeCollaborateur'
 import Profil from '../components/ProfilUser/PageProfil/Profil'
 import ProfilParametre from '../components/ProfilUser/ProfilParametre/ProfilParametre'
-import ListeCollaborateurFront from '../components/FrontOffice/Collaborateur /ListeCollaborateur/ListeCollaborateurFront'
+import ListeCollaborateurFront from '../components/FrontOffice/Collaborateur/ListeCollaborateur/ListeCollaborateurFront'
 import Organigramme from '../components/FrontOffice/Organigramme/Organigramme'
 import Projet from '../components/BackOffice/Projet/Projet'
 

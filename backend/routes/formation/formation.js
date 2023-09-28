@@ -4,11 +4,11 @@ router.use(cookieParser());
 
 
 const Formation = require('../../Modele/formation/Formation');
-const Collaborateur = require('../../Modele/Collaborateur');
+const Collaborateur = require('../../Modele/CollabModel/Collab');
 const Seance = require('../../Modele/formation/Seance');
 const Module = require('../../Modele/formation/Module');
-const Role2 = require('../../Modele/Role2');
-const Departement = require('../../Modele/Departement')
+const Role2 = require('../../Modele/RoleModel/RoleHierarchique');
+const Departement = require('../../Modele/Structure/TestDepartement')
 const Sequelize = require('sequelize');
 
 

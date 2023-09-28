@@ -43,7 +43,7 @@ const connection = mysql.createConnection({
     database : 'testintranet',
 })
 */
-app.use(cors({ origin: 'http://192.168.16.244:3001', credentials: true }));
+app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
 // app.use(cors({ origin: 'http://192.168.16.244:3002', credentials: true}));
 //Ajout de middleware express.json()
 app.use(express.json())

@@ -33,7 +33,7 @@ const ProfilParametre = () => {
       const formData = {password}
 
   
-        axios.put(`http://192.168.16.244:4000/api/compte_collaborateur/${idProfile}/edit`, formData)
+        axios.put(`http://localhost:4000/api/compte_collaborateur/${idProfile}/edit`, formData)
         .then((response) => {
           alert('Mot de Passe modifié avec succès')
           navigate('/home')

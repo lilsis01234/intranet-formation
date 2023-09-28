@@ -16,7 +16,7 @@ const SliderNouveauxCollabs = () => {
   
       //Récupération de la liste des collaborateurs
       const fetchCollaborateur = () => {
-        axios.get('http://192.168.16.244:4000/api/collaborateur/all_collaborateurs')
+        axios.get('http://localhost:4000/api/collaborateur/all_collaborateurs')
           .then(res => {setListCollab(res.data)})
           .catch(err => console.log(err));
       }
@@ -56,7 +56,7 @@ const SliderNouveauxCollabs = () => {
                <section className="homeSlide contentWidth">
                <div className="box d_flex top" key={index}> 
                     <div className='img_new_collab'>
-                       <img src={`http://192.168.16.244:4000/${collab.image}`} alt={collab.nom} className="w-75 h-80 object-cover" />
+                       <img src={`http://localhost:4000/${collab.image}`} alt={collab.nom} className="w-75 h-80 object-cover" />
                     </div>
                     <div className='info_new_collab'>
                        <Typography variant="h1" className="text-center text-3xl p-5 nom">{collab.nom} {collab.prenom}</Typography>

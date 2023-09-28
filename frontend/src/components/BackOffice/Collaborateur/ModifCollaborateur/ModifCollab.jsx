@@ -54,7 +54,7 @@ const ModifCollab = ({ CollabToEdit, onCollabUpdated }) => {
 
     //Récupération de la liste des postes 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/poste/all')
+        axios.get('http://localhost:4000/api/poste/all')
             .then((res) => {
                 setListePoste(res.data)
 
@@ -65,7 +65,7 @@ const ModifCollab = ({ CollabToEdit, onCollabUpdated }) => {
 
     //Récupération de la liste des départements
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/departement/all')
+        axios.get('http://localhost:4000/api/departement/all')
             .then((res) => {
                 setListeDepartement(res.data)
 
@@ -74,7 +74,7 @@ const ModifCollab = ({ CollabToEdit, onCollabUpdated }) => {
     }, [])
 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/projet/all')
+        axios.get('http://localhost:4000/api/projet/all')
             .then((res) => {
                 setListeProjet(res.data)
             })
@@ -183,7 +183,7 @@ const ModifCollab = ({ CollabToEdit, onCollabUpdated }) => {
 
 
 
-        axios.put(`http://192.168.16.244:4000/api/collaborateur/${CollabToEdit.id}/edit`, formData, {
+        axios.put(`http://localhost:4000/api/collaborateur/${CollabToEdit.id}/edit`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
@@ -220,7 +220,7 @@ const ModifCollab = ({ CollabToEdit, onCollabUpdated }) => {
                         <label >Photo:</label><br></br>
 
                         {!selectImage && image && (
-                            <Avatar src={`http://192.168.16.244:4000/${image}`} />
+                            <Avatar src={`http://localhost:4000/${image}`} />
                         )}
                         {selectImage && (
                             <Avatar src={URL.createObjectURL(selectImage)} className="w-32 h-32 rounded-full" />

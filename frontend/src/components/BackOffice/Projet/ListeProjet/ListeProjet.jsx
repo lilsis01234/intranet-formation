@@ -17,7 +17,7 @@ const ListeProjet = () => {
     const itemsPerPage = 15;
 
     const fetchProjet = () => {
-        axios.get("http://192.168.16.244:4000/api/projet/all")
+        axios.get("http://localhost:4000/api/projet/all")
             .then((response) => {
                 setlListProjet(response.data)
             })

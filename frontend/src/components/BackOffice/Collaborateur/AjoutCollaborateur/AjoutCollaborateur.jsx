@@ -94,7 +94,7 @@ const AjoutCollaborateur = () => {
     const [listeProjet, setListeProjet] = useState([])
 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/projet/all')
+        axios.get('http://localhost:4000/api/projet/all')
             .then(((res) => {
                 setListeProjet(res.data)
             }))
@@ -107,7 +107,7 @@ const AjoutCollaborateur = () => {
     const [listePoste, setListePoste] = useState([])
 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/poste/all')
+        axios.get('http://localhost:4000/api/poste/all')
             .then((res) => {
                 setListePoste(res.data)
 
@@ -121,7 +121,7 @@ const AjoutCollaborateur = () => {
     const [listeDepartement, setListeDepartement] = useState([])
 
     useEffect(() => {
-        axios.get('http://192.168.16.244:4000/api/departement/all')
+        axios.get('http://localhost:4000/api/departement/all')
             .then((res) => {
                 setListeDepartement(res.data)
             })
@@ -180,7 +180,7 @@ const AjoutCollaborateur = () => {
 
 
 
-        axios.post('http://192.168.16.244:4000/api/collaborateur/new', formData, {
+        axios.post('http://localhost:4000/api/collaborateur/new', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

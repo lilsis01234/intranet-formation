@@ -33,7 +33,7 @@ const ListDepartementUser = () => {
 
 
     useEffect(()=> {
-        axios.get("http://192.168.16.244:4000/api/departement/all_departement")
+        axios.get("http://localhost:4000/api/departement/all_departement")
         .then((response) => {
              setDepartementList(response.data);
         })

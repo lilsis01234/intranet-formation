@@ -16,12 +16,12 @@ const CollabDepartement = () => {
 useEffect(() => {
   const fetchCollaborateur = () => {
     axios
-      .get(`http://192.168.16.244:4000/api/departement/${id}/collaborateur`)
+      .get(`http://localhost:4000/api/departement/${id}/collaborateur`)
       .then((res) => {
         setCollab(res.data);
       })
       .catch((err) => console.log(err));
-    axios.get("http://192.168.16.244:4000/api/departement/all_departement")
+    axios.get("http://localhost:4000/api/departement/all_departement")
       .then((response) => {
            setDepartement(response.data);
       })
@@ -70,7 +70,7 @@ useEffect(() => {
                   {collabs.map((collab) => (
                     <>
                       <Avatar
-                        src={`http://192.168.16.244:4000/${collab.image}`}
+                        src={`http://localhost:4000/${collab.image}`}
                         alt={collab.nom}
                         size="xxl"
                         className="m-3"

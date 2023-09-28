@@ -9,7 +9,7 @@ const ListeDirection = () => {
   const [directionList, setDirectionList] = useState([]);
 
   const fecthDirection = () => {
-    axios.get("http://192.168.16.244:4000/api/direction/all")
+    axios.get("http://localhost:4000/api/direction/all")
     .then((response) => {
       setDirectionList(response.data)
     })

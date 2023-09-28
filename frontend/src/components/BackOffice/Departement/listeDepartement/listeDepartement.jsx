@@ -33,7 +33,7 @@ const ListDepartement = () => {
 
 
     const fetchDepartement = () => {
-        axios.get("http://192.168.16.244:4000/api/departement/all")
+        axios.get("http://localhost:4000/api/departement/all")
         .then((response) => {
             setDepartementList(response.data);
         })
