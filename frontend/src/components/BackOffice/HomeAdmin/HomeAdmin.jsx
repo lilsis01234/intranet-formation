@@ -18,13 +18,13 @@ function HomeAdmin(){
             const decodedToken = jwt_decode(token)
             console.log(decodedToken)
             if(!decodedToken.exp){
-                localStorage.removeItem('jwt');
+               localStorage.removeItem('jwt');
                 navigate('/')
             } 
         } 
         
         const role = localStorage.getItem('role'); 
-        if (!(role === "Administrateur")){
+        if (!(role === "Administrateur" || role === "SuperAdmin")){
             navigate('/home');
         }
     }, [navigate])
