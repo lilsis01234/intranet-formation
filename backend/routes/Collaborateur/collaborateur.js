@@ -202,9 +202,10 @@ router.get('/all', async (req, res) => {
                 }, {
                     model: Equipe,
                     as: 'equipe1'
-                }, {
+                }
+                , {
                     model: Equipe,
-                    as: 'equipe2'
+                    as: 'equipes'
                 }
             ]
         })
@@ -218,7 +219,7 @@ router.get('/all', async (req, res) => {
 
 
 //Afficher la listes des 10 derniers collaborateurs
-router.get('/newcollab', async (req, res) => {
+router.get('/newcollab',async (req, res) => {
     try {
         const collaborateur = await Collab.findAll({
             order: [['dateEmbauche', 'DESC']],
@@ -242,12 +243,12 @@ router.get('/newcollab', async (req, res) => {
                 }, {
                     model: Projet,
                     as: 'projets'
-                }, , {
+                }, {
                     model: Equipe,
                     as: 'equipe1'
                 }, {
                     model: Equipe,
-                    as: 'equipe2'
+                    as: 'equipes'
                 }
             ]
         })
@@ -289,7 +290,7 @@ router.get('/view/:id', async (req, res) => {
                     as: 'equipe1'
                 }, {
                     model: Equipe,
-                    as: 'equipe2'
+                    as: 'equipes'
                 }]
         });
         if (!collaborateur) {
