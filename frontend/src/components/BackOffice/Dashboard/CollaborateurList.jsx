@@ -21,7 +21,7 @@ const NewCollaborateurList = () => {
                 console.error(error)
             })
     }, [])
-
+    console.log(data)
     //Pour afficher les informations sur les nouveaux collaborateurs
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -67,7 +67,7 @@ const NewCollaborateurList = () => {
                     <td className="table_item_nom">{collaborateur.nom}</td>
                     <td className="table_item_prenom">{collaborateur.prenom}</td>
                     <td className="table_item_poste">{collaborateur.poste1.titrePoste}</td>
-                    <td className="table_item_poste">{collaborateur.projet1.nomProjet}</td>
+                    {collaborateur.projet1.nomProjet && <td className="table_item_poste">{collaborateur.projet1.nomProjet}</td>}
                     <td className="table_item_departement">{collaborateur.departement1.nomDepartement}</td>
                 </tr>
 
