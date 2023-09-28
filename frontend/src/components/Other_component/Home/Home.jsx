@@ -1,29 +1,30 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(()=> {
-        const token = localStorage.getItem('jwt')
-        if (!token){
-            navigate('/');
-        }
-      
-        const role = localStorage.getItem('role')
-        if (role === 'Administrateur' || role === 'SuperAdmin'){
-            navigate('/admin/home');
-            console.log('Redirection vers le page administrateur');
-        } else {
-            navigate('/user/profile'); //A changer quand une nouvelle module soit installer
-            console.log('Redirection vers le page user');
-        }
-    }, [navigate]);
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    const role = localStorage.getItem('role');
+
+    if (!token) {
+      navigate('/');
+      return;
+    }
+
+    if (role === "Administrateur" || role === "SuperAdmin") {
+      navigate('/admin/home');
+    } else {
+      navigate('/user/profile');
+    }
+  }, [navigate]);
+
   return (
     <div>
-      
+      {/* Contenu de la page d'accueil */}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
